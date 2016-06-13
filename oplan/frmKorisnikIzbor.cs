@@ -16,5 +16,25 @@ namespace oplan
         {
             InitializeComponent();
         }
+
+        private void btnNovi_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmPlan noviPlan = new frmPlan();
+            noviPlan.ShowDialog();
+            this.Close();
+        }
+
+        private void btnUcitaj_Click(object sender, EventArgs e)
+        {
+            if (cbxIzbor.SelectedItem != null)
+            {
+                //ucitaj taj plan
+            } 
+            else
+            {
+                MessageBox.Show("Niste odabrali plan!");
+            }
+        }
     }
 }
