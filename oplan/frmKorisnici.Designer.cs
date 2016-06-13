@@ -28,82 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dgvKorisnici = new System.Windows.Forms.DataGridView();
+            this.btnDodajKorisnika = new System.Windows.Forms.Button();
+            this.btnIzmijeniKorisnika = new System.Windows.Forms.Button();
+            this.btnIzbrisiKorisnika = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvKorisnici)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvKorisnici
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 13);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(480, 360);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvKorisnici.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvKorisnici.Location = new System.Drawing.Point(13, 13);
+            this.dgvKorisnici.Name = "dgvKorisnici";
+            this.dgvKorisnici.Size = new System.Drawing.Size(480, 360);
+            this.dgvKorisnici.TabIndex = 0;
             // 
-            // button1
+            // btnDodajKorisnika
             // 
-            this.button1.Location = new System.Drawing.Point(13, 400);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnDodajKorisnika.Font = new System.Drawing.Font("Calibri", 10F);
+            this.btnDodajKorisnika.Location = new System.Drawing.Point(105, 391);
+            this.btnDodajKorisnika.Name = "btnDodajKorisnika";
+            this.btnDodajKorisnika.Size = new System.Drawing.Size(125, 32);
+            this.btnDodajKorisnika.TabIndex = 2;
+            this.btnDodajKorisnika.Text = "Dodaj korisnika";
+            this.btnDodajKorisnika.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnIzmijeniKorisnika
             // 
-            this.button2.Location = new System.Drawing.Point(186, 400);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnIzmijeniKorisnika.Font = new System.Drawing.Font("Calibri", 10F);
+            this.btnIzmijeniKorisnika.Location = new System.Drawing.Point(236, 391);
+            this.btnIzmijeniKorisnika.Name = "btnIzmijeniKorisnika";
+            this.btnIzmijeniKorisnika.Size = new System.Drawing.Size(125, 32);
+            this.btnIzmijeniKorisnika.TabIndex = 3;
+            this.btnIzmijeniKorisnika.Text = "Izmijeni korisnika";
+            this.btnIzmijeniKorisnika.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnIzbrisiKorisnika
             // 
-            this.button3.Location = new System.Drawing.Point(278, 400);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(377, 400);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnIzbrisiKorisnika.Font = new System.Drawing.Font("Calibri", 10F);
+            this.btnIzbrisiKorisnika.Location = new System.Drawing.Point(367, 391);
+            this.btnIzbrisiKorisnika.Name = "btnIzbrisiKorisnika";
+            this.btnIzbrisiKorisnika.Size = new System.Drawing.Size(125, 32);
+            this.btnIzbrisiKorisnika.TabIndex = 4;
+            this.btnIzbrisiKorisnika.Text = "Izbriši korisnika";
+            this.btnIzbrisiKorisnika.UseVisualStyleBackColor = true;
             // 
             // frmKorisnici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(504, 442);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.btnIzbrisiKorisnika);
+            this.Controls.Add(this.btnIzmijeniKorisnika);
+            this.Controls.Add(this.btnDodajKorisnika);
+            this.Controls.Add(this.dgvKorisnici);
             this.Name = "frmKorisnici";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Prikaz korisnika";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Text = "Rad s korisnicima";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvKorisnici)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.DataGridView dgvKorisnici;
+        private System.Windows.Forms.Button btnDodajKorisnika;
+        private System.Windows.Forms.Button btnIzmijeniKorisnika;
+        private System.Windows.Forms.Button btnIzbrisiKorisnika;
     }
 }

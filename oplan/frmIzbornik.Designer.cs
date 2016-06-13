@@ -92,7 +92,7 @@
             // radSDivizijamaToolStripMenuItem
             // 
             this.radSDivizijamaToolStripMenuItem.Name = "radSDivizijamaToolStripMenuItem";
-            this.radSDivizijamaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            this.radSDivizijamaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
             | System.Windows.Forms.Keys.D)));
             this.radSDivizijamaToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.radSDivizijamaToolStripMenuItem.Text = "Rad s divizijama";
@@ -100,7 +100,7 @@
             // radSKorisnicimaToolStripMenuItem
             // 
             this.radSKorisnicimaToolStripMenuItem.Name = "radSKorisnicimaToolStripMenuItem";
-            this.radSKorisnicimaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            this.radSKorisnicimaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
             | System.Windows.Forms.Keys.U)));
             this.radSKorisnicimaToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.radSKorisnicimaToolStripMenuItem.Text = "Rad s korisnicima";
