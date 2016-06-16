@@ -33,8 +33,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +57,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BazaPodatakaOPLAN.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BazaPodatakaOPLAN.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BazaPodatakaOPLAN.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BazaPodatakaOPLAN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BazaPodatakaOPLAN.edmx</DependentUpon>
+    </Compile>
     <Compile Include="frmIzbornik.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +83,18 @@
     </Compile>
     <Compile Include="frmKorisnici.Designer.cs">
       <DependentUpon>frmKorisnici.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKorisnik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKorisnik.Designer.cs">
+      <DependentUpon>frmKorisnik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPostrojba.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPostrojba.Designer.cs">
+      <DependentUpon>frmPostrojba.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPostrojbe.cs">
       <SubType>Form</SubType>
@@ -76,12 +114,52 @@
     <Compile Include="frmPlan.Designer.cs">
       <DependentUpon>frmPlan.cs</DependentUpon>
     </Compile>
+    <Compile Include="korisnik.cs">
+      <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="plan.cs">
+      <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="postrojba.cs">
+      <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pripadnost.cs">
+      <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="promjena.cs">
+      <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvjeraKorisnika.cs" />
     <Compile Include="ProvjeraUnosa.cs" />
+    <Compile Include="RadSPostrojbama.cs" />
+    <Compile Include="ruta.cs">
+      <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tip.cs">
+      <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tocka.cs">
+      <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vrsta.cs">
+      <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmIzbornik.resx">
+      <DependentUpon>frmIzbornik.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmKorisnici.resx">
       <DependentUpon>frmKorisnici.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKorisnik.resx">
+      <DependentUpon>frmKorisnik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPostrojba.resx">
+      <DependentUpon>frmPostrojba.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPostrojbe.resx">
       <DependentUpon>frmPostrojbe.cs</DependentUpon>
@@ -102,6 +180,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EntityDeploy Include="BazaPodatakaOPLAN.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BazaPodatakaOPLAN.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BazaPodatakaOPLAN.edmx.diagram">
+      <DependentUpon>BazaPodatakaOPLAN.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\postrojba.datasource" />
+    <None Include="Properties\DataSources\tip.datasource" />
+    <None Include="Properties\DataSources\vrsta.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -117,6 +206,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="img\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\ikona.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BazaPodatakaOPLAN.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BazaPodatakaOPLAN.edmx</DependentUpon>
+      <LastGenOutput>BazaPodatakaOPLAN.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BazaPodatakaOPLAN.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BazaPodatakaOPLAN.edmx</DependentUpon>
+      <LastGenOutput>BazaPodatakaOPLAN.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

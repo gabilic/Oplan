@@ -13,11 +13,10 @@ namespace oplan
         ///<summary>
         ///Provjerava jesu li u upisanom polju brojke i slova.
         ///</summary>
-        ///<param name="tekst">Upisana vrijednost</param>
         ///<returns>True ako je unos u redu, false ako nije.</returns>
         static public bool ProvjeriTekst (string tekst)
         {
-            if (Regex.IsMatch(tekst, @"^[a-zA-Z0-9_]+$"))
+            if (Regex.IsMatch(tekst, @"^[a-zA-Z0-9]+$"))
             {
                 return true;
             }

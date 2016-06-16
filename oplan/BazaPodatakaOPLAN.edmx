@@ -1,0 +1,641 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBModelOPLAN.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="korisnik">
+          <Key>
+            <PropertyRef Name="id_korisnik" />
+          </Key>
+          <Property Name="id_korisnik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="korisnicko_ime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="lozinka" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="administrator" Type="nchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kretanje">
+          <Key>
+            <PropertyRef Name="id_postrojba" />
+            <PropertyRef Name="id_ruta" />
+          </Key>
+          <Property Name="id_postrojba" Type="int" Nullable="false" />
+          <Property Name="id_ruta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="plan">
+          <Key>
+            <PropertyRef Name="id_plan" />
+          </Key>
+          <Property Name="id_plan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="datum" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="postrojba">
+          <Key>
+            <PropertyRef Name="id_postrojba" />
+          </Key>
+          <Property Name="id_postrojba" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="izdrzljivost" Type="float" Nullable="false" />
+          <Property Name="brzina" Type="float" Nullable="false" />
+          <Property Name="id_vrsta" Type="int" Nullable="false" />
+          <Property Name="id_tip" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pripadnost">
+          <Key>
+            <PropertyRef Name="id_pripadnost" />
+          </Key>
+          <Property Name="id_pripadnost" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iff" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="promjena">
+          <Key>
+            <PropertyRef Name="id_plan" />
+            <PropertyRef Name="id_korisnik" />
+          </Key>
+          <Property Name="id_plan" Type="int" Nullable="false" />
+          <Property Name="id_korisnik" Type="int" Nullable="false" />
+          <Property Name="datum" Type="date" Nullable="false" />
+          <Property Name="radnja" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ruta">
+          <Key>
+            <PropertyRef Name="id_ruta" />
+          </Key>
+          <Property Name="id_ruta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pripadnost" Type="int" Nullable="false" />
+          <Property Name="id_plan" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tip">
+          <Key>
+            <PropertyRef Name="id_tip" />
+          </Key>
+          <Property Name="id_tip" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="opis" Type="text" Nullable="false" />
+          <Property Name="ikona" Type="image" />
+        </EntityType>
+        <EntityType Name="tocka">
+          <Key>
+            <PropertyRef Name="id_tocka" />
+          </Key>
+          <Property Name="id_tocka" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="koord_x" Type="float" Nullable="false" />
+          <Property Name="koord_y" Type="float" Nullable="false" />
+          <Property Name="sadrzi_marker" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="id_ruta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vrsta">
+          <Key>
+            <PropertyRef Name="id_vrsta" />
+          </Key>
+          <Property Name="id_vrsta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="opis" Type="text" Nullable="false" />
+          <Property Name="oznaka" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_kretanje_postrojba">
+          <End Role="postrojba" Type="Self.postrojba" Multiplicity="1" />
+          <End Role="kretanje" Type="Self.kretanje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="postrojba">
+              <PropertyRef Name="id_postrojba" />
+            </Principal>
+            <Dependent Role="kretanje">
+              <PropertyRef Name="id_postrojba" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kretanje_ruta">
+          <End Role="ruta" Type="Self.ruta" Multiplicity="1" />
+          <End Role="kretanje" Type="Self.kretanje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ruta">
+              <PropertyRef Name="id_ruta" />
+            </Principal>
+            <Dependent Role="kretanje">
+              <PropertyRef Name="id_ruta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_postrojba_tip">
+          <End Role="tip" Type="Self.tip" Multiplicity="1" />
+          <End Role="postrojba" Type="Self.postrojba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tip">
+              <PropertyRef Name="id_tip" />
+            </Principal>
+            <Dependent Role="postrojba">
+              <PropertyRef Name="id_tip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_postrojba_vrsta">
+          <End Role="vrsta" Type="Self.vrsta" Multiplicity="1" />
+          <End Role="postrojba" Type="Self.postrojba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vrsta">
+              <PropertyRef Name="id_vrsta" />
+            </Principal>
+            <Dependent Role="postrojba">
+              <PropertyRef Name="id_vrsta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_radnja_korisnik">
+          <End Role="korisnik" Type="Self.korisnik" Multiplicity="1" />
+          <End Role="promjena" Type="Self.promjena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="korisnik">
+              <PropertyRef Name="id_korisnik" />
+            </Principal>
+            <Dependent Role="promjena">
+              <PropertyRef Name="id_korisnik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_radnja_plan">
+          <End Role="plan" Type="Self.plan" Multiplicity="1" />
+          <End Role="promjena" Type="Self.promjena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plan">
+              <PropertyRef Name="id_plan" />
+            </Principal>
+            <Dependent Role="promjena">
+              <PropertyRef Name="id_plan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ruta_plan">
+          <End Role="plan" Type="Self.plan" Multiplicity="1" />
+          <End Role="ruta" Type="Self.ruta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plan">
+              <PropertyRef Name="id_plan" />
+            </Principal>
+            <Dependent Role="ruta">
+              <PropertyRef Name="id_plan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ruta_pripadnost">
+          <End Role="pripadnost" Type="Self.pripadnost" Multiplicity="1" />
+          <End Role="ruta" Type="Self.ruta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pripadnost">
+              <PropertyRef Name="id_pripadnost" />
+            </Principal>
+            <Dependent Role="ruta">
+              <PropertyRef Name="id_pripadnost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tocka_ruta">
+          <End Role="ruta" Type="Self.ruta" Multiplicity="1" />
+          <End Role="tocka" Type="Self.tocka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ruta">
+              <PropertyRef Name="id_ruta" />
+            </Principal>
+            <Dependent Role="tocka">
+              <PropertyRef Name="id_ruta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBModelOPLANStoreContainer">
+          <EntitySet Name="korisnik" EntityType="Self.korisnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kretanje" EntityType="Self.kretanje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="plan" EntityType="Self.plan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="postrojba" EntityType="Self.postrojba" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pripadnost" EntityType="Self.pripadnost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="promjena" EntityType="Self.promjena" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ruta" EntityType="Self.ruta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tip" EntityType="Self.tip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tocka" EntityType="Self.tocka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vrsta" EntityType="Self.vrsta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_kretanje_postrojba" Association="Self.FK_kretanje_postrojba">
+            <End Role="postrojba" EntitySet="postrojba" />
+            <End Role="kretanje" EntitySet="kretanje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kretanje_ruta" Association="Self.FK_kretanje_ruta">
+            <End Role="ruta" EntitySet="ruta" />
+            <End Role="kretanje" EntitySet="kretanje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_postrojba_tip" Association="Self.FK_postrojba_tip">
+            <End Role="tip" EntitySet="tip" />
+            <End Role="postrojba" EntitySet="postrojba" />
+          </AssociationSet>
+          <AssociationSet Name="FK_postrojba_vrsta" Association="Self.FK_postrojba_vrsta">
+            <End Role="vrsta" EntitySet="vrsta" />
+            <End Role="postrojba" EntitySet="postrojba" />
+          </AssociationSet>
+          <AssociationSet Name="FK_radnja_korisnik" Association="Self.FK_radnja_korisnik">
+            <End Role="korisnik" EntitySet="korisnik" />
+            <End Role="promjena" EntitySet="promjena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_radnja_plan" Association="Self.FK_radnja_plan">
+            <End Role="plan" EntitySet="plan" />
+            <End Role="promjena" EntitySet="promjena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ruta_plan" Association="Self.FK_ruta_plan">
+            <End Role="plan" EntitySet="plan" />
+            <End Role="ruta" EntitySet="ruta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ruta_pripadnost" Association="Self.FK_ruta_pripadnost">
+            <End Role="pripadnost" EntitySet="pripadnost" />
+            <End Role="ruta" EntitySet="ruta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tocka_ruta" Association="Self.FK_tocka_ruta">
+            <End Role="ruta" EntitySet="ruta" />
+            <End Role="tocka" EntitySet="tocka" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBModelOPLAN" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="korisnik">
+          <Key>
+            <PropertyRef Name="id_korisnik" />
+          </Key>
+          <Property Name="id_korisnik" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="korisnicko_ime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lozinka" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="administrator" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="promjena" Relationship="DBModelOPLAN.FK_radnja_korisnik" FromRole="korisnik" ToRole="promjena" />
+        </EntityType>
+        <EntityType Name="plan">
+          <Key>
+            <PropertyRef Name="id_plan" />
+          </Key>
+          <Property Name="id_plan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="datum" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="ruta" Relationship="Self.FK_ruta_plan" FromRole="plan" ToRole="ruta" />
+          <NavigationProperty Name="promjena" Relationship="DBModelOPLAN.FK_radnja_plan" FromRole="plan" ToRole="promjena" />
+        </EntityType>
+        <EntityType Name="postrojba">
+          <Key>
+            <PropertyRef Name="id_postrojba" />
+          </Key>
+          <Property Name="id_postrojba" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="izdrzljivost" Type="Double" Nullable="false" />
+          <Property Name="brzina" Type="Double" Nullable="false" />
+          <Property Name="id_vrsta" Type="Int32" Nullable="false" />
+          <Property Name="id_tip" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tip" Relationship="Self.FK_postrojba_tip" FromRole="postrojba" ToRole="tip" />
+          <NavigationProperty Name="vrsta" Relationship="Self.FK_postrojba_vrsta" FromRole="postrojba" ToRole="vrsta" />
+          <NavigationProperty Name="ruta" Relationship="Self.kretanje" FromRole="postrojba" ToRole="ruta" />
+        </EntityType>
+        <EntityType Name="pripadnost">
+          <Key>
+            <PropertyRef Name="id_pripadnost" />
+          </Key>
+          <Property Name="id_pripadnost" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iff" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ruta" Relationship="Self.FK_ruta_pripadnost" FromRole="pripadnost" ToRole="ruta" />
+        </EntityType>
+        <EntityType Name="ruta">
+          <Key>
+            <PropertyRef Name="id_ruta" />
+          </Key>
+          <Property Name="id_ruta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_pripadnost" Type="Int32" Nullable="false" />
+          <Property Name="id_plan" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="plan" Relationship="Self.FK_ruta_plan" FromRole="ruta" ToRole="plan" />
+          <NavigationProperty Name="pripadnost" Relationship="Self.FK_ruta_pripadnost" FromRole="ruta" ToRole="pripadnost" />
+          <NavigationProperty Name="tocka" Relationship="Self.FK_tocka_ruta" FromRole="ruta" ToRole="tocka" />
+          <NavigationProperty Name="postrojba" Relationship="Self.kretanje" FromRole="ruta" ToRole="postrojba" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tip">
+          <Key>
+            <PropertyRef Name="id_tip" />
+          </Key>
+          <Property Name="id_tip" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ikona" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="postrojba" Relationship="Self.FK_postrojba_tip" FromRole="tip" ToRole="postrojba" />
+        </EntityType>
+        <EntityType Name="tocka">
+          <Key>
+            <PropertyRef Name="id_tocka" />
+          </Key>
+          <Property Name="id_tocka" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="koord_x" Type="Double" Nullable="false" />
+          <Property Name="koord_y" Type="Double" Nullable="false" />
+          <Property Name="sadrzi_marker" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id_ruta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ruta" Relationship="Self.FK_tocka_ruta" FromRole="tocka" ToRole="ruta" />
+        </EntityType>
+        <EntityType Name="vrsta">
+          <Key>
+            <PropertyRef Name="id_vrsta" />
+          </Key>
+          <Property Name="id_vrsta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="oznaka" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="postrojba" Relationship="Self.FK_postrojba_vrsta" FromRole="vrsta" ToRole="postrojba" />
+        </EntityType>
+        <Association Name="FK_ruta_plan">
+          <End Role="plan" Type="Self.plan" Multiplicity="1" />
+          <End Role="ruta" Type="Self.ruta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plan">
+              <PropertyRef Name="id_plan" />
+            </Principal>
+            <Dependent Role="ruta">
+              <PropertyRef Name="id_plan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_postrojba_tip">
+          <End Role="tip" Type="Self.tip" Multiplicity="1" />
+          <End Role="postrojba" Type="Self.postrojba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tip">
+              <PropertyRef Name="id_tip" />
+            </Principal>
+            <Dependent Role="postrojba">
+              <PropertyRef Name="id_tip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_postrojba_vrsta">
+          <End Role="vrsta" Type="Self.vrsta" Multiplicity="1" />
+          <End Role="postrojba" Type="Self.postrojba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vrsta">
+              <PropertyRef Name="id_vrsta" />
+            </Principal>
+            <Dependent Role="postrojba">
+              <PropertyRef Name="id_vrsta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ruta_pripadnost">
+          <End Role="pripadnost" Type="Self.pripadnost" Multiplicity="1" />
+          <End Role="ruta" Type="Self.ruta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pripadnost">
+              <PropertyRef Name="id_pripadnost" />
+            </Principal>
+            <Dependent Role="ruta">
+              <PropertyRef Name="id_pripadnost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tocka_ruta">
+          <End Role="ruta" Type="Self.ruta" Multiplicity="1" />
+          <End Role="tocka" Type="Self.tocka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ruta">
+              <PropertyRef Name="id_ruta" />
+            </Principal>
+            <Dependent Role="tocka">
+              <PropertyRef Name="id_ruta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="kretanje">
+          <End Role="postrojba" Type="Self.postrojba" Multiplicity="*" />
+          <End Role="ruta" Type="Self.ruta" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="EntitiesSettings" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="korisnik" EntityType="Self.korisnik" />
+          <EntitySet Name="plan" EntityType="Self.plan" />
+          <EntitySet Name="postrojba" EntityType="Self.postrojba" />
+          <EntitySet Name="pripadnost" EntityType="Self.pripadnost" />
+          <EntitySet Name="ruta" EntityType="Self.ruta" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tip" EntityType="Self.tip" />
+          <EntitySet Name="tocka" EntityType="Self.tocka" />
+          <EntitySet Name="vrsta" EntityType="Self.vrsta" />
+          <AssociationSet Name="FK_ruta_plan" Association="Self.FK_ruta_plan">
+            <End Role="plan" EntitySet="plan" />
+            <End Role="ruta" EntitySet="ruta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_postrojba_tip" Association="Self.FK_postrojba_tip">
+            <End Role="tip" EntitySet="tip" />
+            <End Role="postrojba" EntitySet="postrojba" />
+          </AssociationSet>
+          <AssociationSet Name="FK_postrojba_vrsta" Association="Self.FK_postrojba_vrsta">
+            <End Role="vrsta" EntitySet="vrsta" />
+            <End Role="postrojba" EntitySet="postrojba" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ruta_pripadnost" Association="Self.FK_ruta_pripadnost">
+            <End Role="pripadnost" EntitySet="pripadnost" />
+            <End Role="ruta" EntitySet="ruta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tocka_ruta" Association="Self.FK_tocka_ruta">
+            <End Role="ruta" EntitySet="ruta" />
+            <End Role="tocka" EntitySet="tocka" />
+          </AssociationSet>
+          <AssociationSet Name="kretanje" Association="Self.kretanje">
+            <End Role="postrojba" EntitySet="postrojba" />
+            <End Role="ruta" EntitySet="ruta" />
+          </AssociationSet>
+          <EntitySet Name="promjena" EntityType="DBModelOPLAN.promjena" />
+          <AssociationSet Name="FK_radnja_korisnik" Association="DBModelOPLAN.FK_radnja_korisnik">
+            <End Role="korisnik" EntitySet="korisnik" />
+            <End Role="promjena" EntitySet="promjena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_radnja_plan" Association="DBModelOPLAN.FK_radnja_plan">
+            <End Role="plan" EntitySet="plan" />
+            <End Role="promjena" EntitySet="promjena" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="promjena">
+          <Key>
+            <PropertyRef Name="id_plan" />
+            <PropertyRef Name="id_korisnik" />
+          </Key>
+          <Property Name="id_plan" Type="Int32" Nullable="false" />
+          <Property Name="id_korisnik" Type="Int32" Nullable="false" />
+          <Property Name="datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="radnja" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="korisnik" Relationship="DBModelOPLAN.FK_radnja_korisnik" FromRole="promjena" ToRole="korisnik" />
+          <NavigationProperty Name="plan" Relationship="DBModelOPLAN.FK_radnja_plan" FromRole="promjena" ToRole="plan" />
+        </EntityType>
+        <Association Name="FK_radnja_korisnik">
+          <End Type="DBModelOPLAN.korisnik" Role="korisnik" Multiplicity="1" />
+          <End Type="DBModelOPLAN.promjena" Role="promjena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="korisnik">
+              <PropertyRef Name="id_korisnik" />
+            </Principal>
+            <Dependent Role="promjena">
+              <PropertyRef Name="id_korisnik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_radnja_plan">
+          <End Type="DBModelOPLAN.plan" Role="plan" Multiplicity="1" />
+          <End Type="DBModelOPLAN.promjena" Role="promjena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plan">
+              <PropertyRef Name="id_plan" />
+            </Principal>
+            <Dependent Role="promjena">
+              <PropertyRef Name="id_plan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBModelOPLANStoreContainer" CdmEntityContainer="EntitiesSettings">
+          <EntitySetMapping Name="korisnik">
+            <EntityTypeMapping TypeName="DBModelOPLAN.korisnik">
+              <MappingFragment StoreEntitySet="korisnik">
+                <ScalarProperty Name="id_korisnik" ColumnName="id_korisnik" />
+                <ScalarProperty Name="korisnicko_ime" ColumnName="korisnicko_ime" />
+                <ScalarProperty Name="lozinka" ColumnName="lozinka" />
+                <ScalarProperty Name="administrator" ColumnName="administrator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="plan">
+            <EntityTypeMapping TypeName="DBModelOPLAN.plan">
+              <MappingFragment StoreEntitySet="plan">
+                <ScalarProperty Name="id_plan" ColumnName="id_plan" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="datum" ColumnName="datum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="postrojba">
+            <EntityTypeMapping TypeName="DBModelOPLAN.postrojba">
+              <MappingFragment StoreEntitySet="postrojba">
+                <ScalarProperty Name="id_postrojba" ColumnName="id_postrojba" />
+                <ScalarProperty Name="izdrzljivost" ColumnName="izdrzljivost" />
+                <ScalarProperty Name="brzina" ColumnName="brzina" />
+                <ScalarProperty Name="id_vrsta" ColumnName="id_vrsta" />
+                <ScalarProperty Name="id_tip" ColumnName="id_tip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pripadnost">
+            <EntityTypeMapping TypeName="DBModelOPLAN.pripadnost">
+              <MappingFragment StoreEntitySet="pripadnost">
+                <ScalarProperty Name="id_pripadnost" ColumnName="id_pripadnost" />
+                <ScalarProperty Name="iff" ColumnName="iff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ruta">
+            <EntityTypeMapping TypeName="DBModelOPLAN.ruta">
+              <MappingFragment StoreEntitySet="ruta">
+                <ScalarProperty Name="id_ruta" ColumnName="id_ruta" />
+                <ScalarProperty Name="id_pripadnost" ColumnName="id_pripadnost" />
+                <ScalarProperty Name="id_plan" ColumnName="id_plan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBModelOPLAN.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tip">
+            <EntityTypeMapping TypeName="DBModelOPLAN.tip">
+              <MappingFragment StoreEntitySet="tip">
+                <ScalarProperty Name="id_tip" ColumnName="id_tip" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="opis" ColumnName="opis" />
+                <ScalarProperty Name="ikona" ColumnName="ikona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tocka">
+            <EntityTypeMapping TypeName="DBModelOPLAN.tocka">
+              <MappingFragment StoreEntitySet="tocka">
+                <ScalarProperty Name="id_tocka" ColumnName="id_tocka" />
+                <ScalarProperty Name="koord_x" ColumnName="koord_x" />
+                <ScalarProperty Name="koord_y" ColumnName="koord_y" />
+                <ScalarProperty Name="sadrzi_marker" ColumnName="sadrzi_marker" />
+                <ScalarProperty Name="id_ruta" ColumnName="id_ruta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vrsta">
+            <EntityTypeMapping TypeName="DBModelOPLAN.vrsta">
+              <MappingFragment StoreEntitySet="vrsta">
+                <ScalarProperty Name="id_vrsta" ColumnName="id_vrsta" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="opis" ColumnName="opis" />
+                <ScalarProperty Name="oznaka" ColumnName="oznaka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="kretanje" TypeName="DBModelOPLAN.kretanje" StoreEntitySet="kretanje">
+            <EndProperty Name="postrojba">
+              <ScalarProperty Name="id_postrojba" ColumnName="id_postrojba" />
+            </EndProperty>
+            <EndProperty Name="ruta">
+              <ScalarProperty Name="id_ruta" ColumnName="id_ruta" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="promjena">
+            <EntityTypeMapping TypeName="DBModelOPLAN.promjena">
+              <MappingFragment StoreEntitySet="promjena">
+                <ScalarProperty Name="radnja" ColumnName="radnja" />
+                <ScalarProperty Name="datum" ColumnName="datum" />
+                <ScalarProperty Name="id_korisnik" ColumnName="id_korisnik" />
+                <ScalarProperty Name="id_plan" ColumnName="id_plan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

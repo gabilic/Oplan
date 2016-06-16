@@ -16,5 +16,25 @@ namespace oplan
         {
             InitializeComponent();
         }
+
+        private void frmPostrojbe_Load(object sender, EventArgs e)
+        {
+            RadSPostrojbama.PrikaziPostrojbe(dgvPostrojbe);
+        }
+
+        private void btnDodajPostrojbu_Click(object sender, EventArgs e)
+        {
+            RadSPostrojbama.DodajPostrojbu(dgvPostrojbe);
+        }
+
+        private void btnIzmijeniPostrojbu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnIzbrisiPostrojbu_Click(object sender, EventArgs e)
+        {
+            RadSPostrojbama.IzbrisiPostrojbu(dgvPostrojbe, dgvPostrojbe.CurrentRow);
+        }
     }
 }
