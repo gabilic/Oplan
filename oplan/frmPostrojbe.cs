@@ -29,7 +29,7 @@ namespace oplan
 
         private void btnIzmijeniPostrojbu_Click(object sender, EventArgs e)
         {
-
+            RadSPostrojbama.IzmijeniPostrojbu(dgvPostrojbe, dgvPostrojbe.CurrentRow);
         }
 
         private void btnIzbrisiPostrojbu_Click(object sender, EventArgs e)

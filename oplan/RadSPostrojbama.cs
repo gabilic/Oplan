@@ -74,13 +74,45 @@ namespace oplan
             }
         }
 
-        static public bool ProvjeriPostrojbu(int idVrsta, int idTip)
+        static public bool ProvjeriPostrojbu(int idVrsta, int idTip, DataGridViewRow redakZaIzmjenu)
+        {
+            bool promjena = false;
+
+            if (redakZaIzmjenu == null)
+            {
+                promjena = ProvjeriPostojanjePostrojbe(idVrsta, idTip);
+            }
+            else
+            {
+                using (var db = new EntitiesSettings())
+                {
+                    var itemVrsta = (from v in db.vrsta
+                                     where v.id_vrsta == idVrsta
+                                     select v.naziv).FirstOrDefault();
+                    var itemTip = (from t in db.tip
+                                   where t.id_tip == idTip
+                                   select t.naziv).FirstOrDefault();
+                    if (itemVrsta == redakZaIzmjenu.Cells[1].Value.ToString() && itemTip == redakZaIzmjenu.Cells[2].Value.ToString())
+                    {
+                        promjena = true;
+                    }
+                    else
+                    {
+                        promjena = ProvjeriPostojanjePostrojbe(idVrsta, idTip);
+                    }
+                }
+            }
+
+            return promjena;
+        }
+
+        static public bool ProvjeriPostojanjePostrojbe(int idVrsta, int idTip)
         {
             using (var db = new EntitiesSettings())
             {
                 postrojba = (from p in db.postrojba
-                            where p.id_vrsta == idVrsta && p.id_tip == idTip
-                            select p).FirstOrDefault<postrojba>();
+                             where p.id_vrsta == idVrsta && p.id_tip == idTip
+                             select p).FirstOrDefault<postrojba>();
                 if (postrojba == null)
                 {
                     return true;
@@ -89,6 +121,16 @@ namespace oplan
                 {
                     return false;
                 }
+            }
+        }
+
+        static public void IzmijeniPostrojbu(DataGridView dgvPostrojbe, DataGridViewRow currentRow)
+        {
+            if (currentRow != null)
+            {
+                frmPostrojba formaPostrojba = new frmPostrojba(currentRow);
+                formaPostrojba.ShowDialog();
+                PrikaziPostrojbe(dgvPostrojbe);
             }
         }
     }

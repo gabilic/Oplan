@@ -12,14 +12,54 @@ namespace oplan
 {
     public partial class frmPostrojba : Form
     {
+        private DataGridViewRow redakZaIzmjenu;
+
         public frmPostrojba()
         {
             InitializeComponent();
         }
 
+        public frmPostrojba(DataGridViewRow currentRow)
+        {
+            InitializeComponent();
+            redakZaIzmjenu = currentRow;
+        }
+
         private void frmPostrojba_Load(object sender, EventArgs e)
         {
             UcitajPodatke();
+            if (redakZaIzmjenu != null)
+            {
+                using (var db = new EntitiesSettings())
+                {
+                    List<postrojba> listaPostrojbi = new List<postrojba>(db.postrojba.ToList());
+                    foreach (var postrojba in listaPostrojbi)
+                    {
+                        if (postrojba.id_postrojba == (int)redakZaIzmjenu.Cells[0].Value)
+                        {
+                            foreach (var item in cmbVrsta.Items)
+                            {
+                                if ((item as vrsta).id_vrsta == postrojba.id_vrsta)
+                                {
+                                    cmbVrsta.SelectedItem = item;
+                                }
+                            }
+                            foreach (var item in cmbTip.Items)
+                            {
+                                if ((item as tip).id_tip == postrojba.id_tip)
+                                {
+                                    cmbTip.SelectedItem = item;
+                                }
+                            }
+
+                            tkbIzdrzljivost.Value = (int)(postrojba.izdrzljivost * 100);
+                            txtVI.Text = ((int)(postrojba.izdrzljivost * 100)).ToString();
+                            tkbBrzina.Value = (int)(postrojba.brzina * 100);
+                            txtVB.Text = ((int)(postrojba.brzina * 100)).ToString();
+                        }
+                    }
+                }
+            }
         }
 
         public void UcitajPodatke()
@@ -113,19 +153,43 @@ namespace oplan
             var itemTip = cmbTip.SelectedItem as tip;
             int idTip = itemTip.id_tip;
 
-            if (RadSPostrojbama.ProvjeriPostrojbu(idVrsta, idTip))
+            if (RadSPostrojbama.ProvjeriPostrojbu(idVrsta, idTip, redakZaIzmjenu))
             {
-                postrojba postrojba = new postrojba
+                if (redakZaIzmjenu == null)
                 {
-                    izdrzljivost = Math.Round((double)tkbIzdrzljivost.Value / 100, 2),
-                    brzina = Math.Round((double)tkbBrzina.Value / 100, 2),
-                    id_vrsta = idVrsta,
-                    id_tip = idTip
-                };
-                using (var db = new EntitiesSettings())
+                    postrojba postrojba = new postrojba
+                    {
+                        izdrzljivost = Math.Round((double)tkbIzdrzljivost.Value / 100, 2),
+                        brzina = Math.Round((double)tkbBrzina.Value / 100, 2),
+                        id_vrsta = idVrsta,
+                        id_tip = idTip
+                    };
+                    using (var db = new EntitiesSettings())
+                    {
+                        db.postrojba.Add(postrojba);
+                        db.SaveChanges();
+                    }
+                    MessageBox.Show("Uspješno ste dodali postrojbu.", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
                 {
-                    db.postrojba.Add(postrojba);
-                    db.SaveChanges();
+                    using (var db = new EntitiesSettings())
+                    {
+                        List<postrojba> listaPostrojbi = new List<postrojba>(db.postrojba.ToList());
+                        foreach (var postrojba in listaPostrojbi)
+                        {
+                            if (postrojba.id_postrojba == (int)redakZaIzmjenu.Cells[0].Value)
+                            {
+                                postrojba.izdrzljivost = Math.Round((double)tkbIzdrzljivost.Value / 100, 2);
+                                postrojba.brzina = Math.Round((double)tkbBrzina.Value / 100, 2);
+                                postrojba.id_vrsta = idVrsta;
+                                postrojba.id_tip = idTip;
+
+                                db.SaveChanges();
+                            }
+                        }
+                    }
+                    MessageBox.Show("Uspješno ste izmijenili postrojbu.", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 this.Close();
             }
