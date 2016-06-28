@@ -22,9 +22,9 @@ public partial class plan
     public plan()
     {
 
-        this.ruta = new HashSet<ruta>();
-
         this.promjena = new HashSet<promjena>();
+
+        this.tocka = new HashSet<tocka>();
 
     }
 
@@ -39,11 +39,11 @@ public partial class plan
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<ruta> ruta { get; set; }
+    public virtual ICollection<promjena> promjena { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<promjena> promjena { get; set; }
+    public virtual ICollection<tocka> tocka { get; set; }
 
 }
 

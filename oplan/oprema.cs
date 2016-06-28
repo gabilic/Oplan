@@ -15,11 +15,11 @@ namespace oplan
 using System;
     using System.Collections.Generic;
     
-public partial class tip
+public partial class oprema
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public tip()
+    public oprema()
     {
 
         this.postrojba = new HashSet<postrojba>();
@@ -27,15 +27,21 @@ public partial class tip
     }
 
 
-    public int id_tip { get; set; }
+    public int id_oprema { get; set; }
 
-    public string naziv { get; set; }
+    public string model { get; set; }
 
     public string opis { get; set; }
 
-    public byte[] ikona { get; set; }
+    public int id_tip_oprema { get; set; }
+
+    public int id_zemlja { get; set; }
 
 
+
+    public virtual tip_opreme tip_opreme { get; set; }
+
+    public virtual zemlja zemlja { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 

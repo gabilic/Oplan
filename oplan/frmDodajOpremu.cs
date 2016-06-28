@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace oplan
 {
-    public partial class frmKorisnik : Form
+    public partial class frmDodajOpremu : Form
     {
-        public frmKorisnik()
+        public frmDodajOpremu()
         {
             InitializeComponent();
         }

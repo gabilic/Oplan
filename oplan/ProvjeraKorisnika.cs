@@ -12,12 +12,12 @@ namespace oplan
         static private korisnik korisnik = null;
 
         ///<summary>
-        ///Provjerava jesu li korisničko ime i lozinka jednaki onima u bazi za nađenog korisnika. 
-        ///Ako je nađen gleda je li korisnik administrator ili obični korisnik te otvara formu glavnog izbornika.
+        ///Provjerava jesu li korisničko ime i lozinka jednaki zapisu u bazi za tog korisnika.
+        ///Ako je zapis nađen, otvara odgovarajuću formu te joj proslijeđuje podatke o korisniku.
         ///</summary>
         static public void ProvjeriKorisnika(frmPrijava prijava, string korisnickoIme, string lozinka)
         {
-            if (!ProvjeriKorisnickoIme(korisnickoIme, lozinka))
+            if (!ProvjeriKorisnickoIme(korisnickoIme))
             {
                 MessageBox.Show("Uneseno korisničko ime ne postoji!", "Pogreška", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -30,12 +30,12 @@ namespace oplan
                 prijava.Hide();
                 if (korisnik.administrator == "Da")
                 {
-                    frmIzbornik izbornik = new frmIzbornik(true);
+                    frmIzbornik izbornik = new frmIzbornik(true, korisnik.id_korisnik);
                     izbornik.ShowDialog();
                 }
                 else
                 {
-                    frmIzbornik izbornik = new frmIzbornik(false);
+                    frmIzbornik izbornik = new frmIzbornik(false, korisnik.id_korisnik);
                     izbornik.ShowDialog();
                 }
                 prijava.Close();
@@ -43,10 +43,10 @@ namespace oplan
         }
 
         ///<summary>
-        ///Provjerava postoji li korisničko ime na temelju upita prema bazi.
+        ///Provjerava postoji li korisničko ime u bazi podataka.
         ///</summary>
         ///<returns>True ako korisničko ime postoji, false ako ne postoji.</returns>
-        static public bool ProvjeriKorisnickoIme(string korisnickoIme, string lozinka)
+        static public bool ProvjeriKorisnickoIme(string korisnickoIme)
         {
             using (var db = new EntitiesSettings())
             {

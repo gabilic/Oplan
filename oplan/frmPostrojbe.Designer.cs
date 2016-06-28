@@ -56,14 +56,14 @@
             this.dgvPostrojbe.Location = new System.Drawing.Point(13, 13);
             this.dgvPostrojbe.Name = "dgvPostrojbe";
             this.dgvPostrojbe.ReadOnly = true;
-            this.dgvPostrojbe.Size = new System.Drawing.Size(600, 360);
+            this.dgvPostrojbe.Size = new System.Drawing.Size(600, 352);
             this.dgvPostrojbe.TabIndex = 0;
             // 
             // btnIzbrisiPostrojbu
             // 
             this.btnIzbrisiPostrojbu.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnIzbrisiPostrojbu.Font = new System.Drawing.Font("Calibri", 10F);
-            this.btnIzbrisiPostrojbu.Location = new System.Drawing.Point(488, 391);
+            this.btnIzbrisiPostrojbu.Location = new System.Drawing.Point(488, 378);
             this.btnIzbrisiPostrojbu.Name = "btnIzbrisiPostrojbu";
             this.btnIzbrisiPostrojbu.Size = new System.Drawing.Size(125, 32);
             this.btnIzbrisiPostrojbu.TabIndex = 2;
@@ -75,7 +75,7 @@
             // 
             this.btnDodajPostrojbu.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnDodajPostrojbu.Font = new System.Drawing.Font("Calibri", 10F);
-            this.btnDodajPostrojbu.Location = new System.Drawing.Point(226, 391);
+            this.btnDodajPostrojbu.Location = new System.Drawing.Point(226, 378);
             this.btnDodajPostrojbu.Name = "btnDodajPostrojbu";
             this.btnDodajPostrojbu.Size = new System.Drawing.Size(125, 32);
             this.btnDodajPostrojbu.TabIndex = 3;
@@ -87,7 +87,7 @@
             // 
             this.btnIzmijeniPostrojbu.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnIzmijeniPostrojbu.Font = new System.Drawing.Font("Calibri", 10F);
-            this.btnIzmijeniPostrojbu.Location = new System.Drawing.Point(357, 391);
+            this.btnIzmijeniPostrojbu.Location = new System.Drawing.Point(357, 378);
             this.btnIzmijeniPostrojbu.Name = "btnIzmijeniPostrojbu";
             this.btnIzmijeniPostrojbu.Size = new System.Drawing.Size(125, 32);
             this.btnIzmijeniPostrojbu.TabIndex = 4;
@@ -99,7 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 442);
+            this.ClientSize = new System.Drawing.Size(624, 422);
             this.Controls.Add(this.btnIzmijeniPostrojbu);
             this.Controls.Add(this.btnDodajPostrojbu);
             this.Controls.Add(this.btnIzbrisiPostrojbu);

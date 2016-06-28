@@ -1,6 +1,6 @@
 ﻿namespace oplan
 {
-    partial class frmPostrojba
+    partial class frmDodajPostrojbu
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPostrojba));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDodajPostrojbu));
             this.tkbIzdrzljivost = new System.Windows.Forms.TrackBar();
             this.btnOdustani = new System.Windows.Forms.Button();
             this.btnSpremi = new System.Windows.Forms.Button();
@@ -251,8 +251,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmPostrojba";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Dodavanje / Izmjena postrojbe";
+            this.Text = "Dodavanje postrojbe";
             this.Load += new System.EventHandler(this.frmPostrojba_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tkbIzdrzljivost)).EndInit();
             this.gbxIzdrzljivost.ResumeLayout(false);

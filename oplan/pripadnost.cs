@@ -22,7 +22,7 @@ public partial class pripadnost
     public pripadnost()
     {
 
-        this.ruta = new HashSet<ruta>();
+        this.tocka = new HashSet<tocka>();
 
     }
 
@@ -35,7 +35,7 @@ public partial class pripadnost
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<ruta> ruta { get; set; }
+    public virtual ICollection<tocka> tocka { get; set; }
 
 }
 

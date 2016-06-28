@@ -1,6 +1,6 @@
 ﻿namespace oplan
 {
-    partial class frmKorisnik
+    partial class frmDodajKorisnika
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmKorisnik));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDodajKorisnika));
             this.lblKorime = new System.Windows.Forms.Label();
             this.txtKorime = new System.Windows.Forms.TextBox();
             this.lblLozinka = new System.Windows.Forms.Label();
@@ -57,6 +57,7 @@
             // 
             this.txtKorime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtKorime.Location = new System.Drawing.Point(16, 36);
+            this.txtKorime.MaxLength = 20;
             this.txtKorime.Name = "txtKorime";
             this.txtKorime.Size = new System.Drawing.Size(150, 23);
             this.txtKorime.TabIndex = 1;
@@ -75,6 +76,7 @@
             // 
             this.txtLozinka.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtLozinka.Location = new System.Drawing.Point(18, 96);
+            this.txtLozinka.MaxLength = 15;
             this.txtLozinka.Name = "txtLozinka";
             this.txtLozinka.Size = new System.Drawing.Size(150, 23);
             this.txtLozinka.TabIndex = 3;
@@ -141,6 +143,7 @@
             this.btnSpremi.TabIndex = 7;
             this.btnSpremi.Text = "Spremi";
             this.btnSpremi.UseVisualStyleBackColor = true;
+            this.btnSpremi.Click += new System.EventHandler(this.btnSpremi_Click);
             // 
             // btnOdustani
             // 
@@ -151,6 +154,7 @@
             this.btnOdustani.TabIndex = 8;
             this.btnOdustani.Text = "Odustani";
             this.btnOdustani.UseVisualStyleBackColor = true;
+            this.btnOdustani.Click += new System.EventHandler(this.btnOdustani_Click);
             // 
             // frmKorisnik
             // 
@@ -170,8 +174,10 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmKorisnik";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Dodavanje / Izmjena korisnika";
+            this.Text = "Dodavanje korisnika";
+            this.Load += new System.EventHandler(this.frmKorisnik_Load);
             this.gbxAdmin.ResumeLayout(false);
             this.gbxAdmin.PerformLayout();
             this.ResumeLayout(false);

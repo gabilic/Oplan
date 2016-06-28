@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ikona.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -41,11 +44,14 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -72,6 +78,35 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BazaPodatakaOPLAN.edmx</DependentUpon>
     </Compile>
+    <Compile Include="dsIzvjestaj.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsIzvjestaj.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frmDnevnik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDnevnik.Designer.cs">
+      <DependentUpon>frmDnevnik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDodajKorisnika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDodajKorisnika.Designer.cs">
+      <DependentUpon>frmDodajKorisnika.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDodajOpremu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDodajOpremu.Designer.cs">
+      <DependentUpon>frmDodajOpremu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDodajPostrojbu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDodajPostrojbu.Designer.cs">
+      <DependentUpon>frmDodajPostrojbu.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmIzbornik.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,17 +119,17 @@
     <Compile Include="frmKorisnici.Designer.cs">
       <DependentUpon>frmKorisnici.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmKorisnik.cs">
+    <Compile Include="frmNaziv.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmKorisnik.Designer.cs">
-      <DependentUpon>frmKorisnik.cs</DependentUpon>
+    <Compile Include="frmNaziv.Designer.cs">
+      <DependentUpon>frmNaziv.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPostrojba.cs">
+    <Compile Include="frmOprema.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPostrojba.Designer.cs">
-      <DependentUpon>frmPostrojba.cs</DependentUpon>
+    <Compile Include="frmOprema.Designer.cs">
+      <DependentUpon>frmOprema.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPostrojbe.cs">
       <SubType>Form</SubType>
@@ -114,7 +149,17 @@
     <Compile Include="frmPlan.Designer.cs">
       <DependentUpon>frmPlan.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUcitaj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUcitaj.Designer.cs">
+      <DependentUpon>frmUcitaj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvjestaji.cs" />
     <Compile Include="korisnik.cs">
+      <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="oprema.cs">
       <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
     </Compile>
     <Compile Include="plan.cs">
@@ -133,14 +178,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvjeraKorisnika.cs" />
     <Compile Include="ProvjeraUnosa.cs" />
+    <Compile Include="RadSKorisnicima.cs" />
+    <Compile Include="RadSPlanovima.cs" />
     <Compile Include="RadSPostrojbama.cs" />
-    <Compile Include="ruta.cs">
-      <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
-    </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
     </Compile>
-    <Compile Include="tip.cs">
+    <Compile Include="tip_opreme.cs">
+      <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tip_postrojbe.cs">
       <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
     </Compile>
     <Compile Include="tocka.cs">
@@ -149,17 +196,20 @@
     <Compile Include="vrsta.cs">
       <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
     </Compile>
+    <Compile Include="zemlja.cs">
+      <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmDnevnik.resx">
+      <DependentUpon>frmDnevnik.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmIzbornik.resx">
       <DependentUpon>frmIzbornik.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmKorisnici.resx">
       <DependentUpon>frmKorisnici.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmKorisnik.resx">
-      <DependentUpon>frmKorisnik.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmPostrojba.resx">
-      <DependentUpon>frmPostrojba.cs</DependentUpon>
+    <EmbeddedResource Include="frmNaziv.resx">
+      <DependentUpon>frmNaziv.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPostrojbe.resx">
       <DependentUpon>frmPostrojbe.cs</DependentUpon>
@@ -169,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPlan.resx">
       <DependentUpon>frmPlan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUcitaj.resx">
+      <DependentUpon>frmUcitaj.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -180,6 +233,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="rptDnevnik.rdlc" />
     <EntityDeploy Include="BazaPodatakaOPLAN.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BazaPodatakaOPLAN.Designer.cs</LastGenOutput>
@@ -187,7 +241,20 @@
     <None Include="BazaPodatakaOPLAN.edmx.diagram">
       <DependentUpon>BazaPodatakaOPLAN.edmx</DependentUpon>
     </None>
+    <None Include="dsIzvjestaj.xsc">
+      <DependentUpon>dsIzvjestaj.xsd</DependentUpon>
+    </None>
+    <None Include="dsIzvjestaj.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsIzvjestaj.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsIzvjestaj.xss">
+      <DependentUpon>dsIzvjestaj.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\korisnik.datasource" />
+    <None Include="Properties\DataSources\plan.datasource" />
     <None Include="Properties\DataSources\postrojba.datasource" />
     <None Include="Properties\DataSources\tip.datasource" />
     <None Include="Properties\DataSources\vrsta.datasource" />
@@ -224,6 +291,7 @@
       <DependentUpon>BazaPodatakaOPLAN.edmx</DependentUpon>
       <LastGenOutput>BazaPodatakaOPLAN.cs</LastGenOutput>
     </Content>
+    <Content Include="ikona.ico" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

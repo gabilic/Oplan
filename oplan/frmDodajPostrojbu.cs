@@ -10,19 +10,20 @@ using System.Windows.Forms;
 
 namespace oplan
 {
-    public partial class frmPostrojba : Form
+    public partial class frmDodajPostrojbu : Form
     {
         private DataGridViewRow redakZaIzmjenu;
 
-        public frmPostrojba()
+        public frmDodajPostrojbu()
         {
             InitializeComponent();
         }
 
-        public frmPostrojba(DataGridViewRow currentRow)
+        public frmDodajPostrojbu(DataGridViewRow currentRow)
         {
             InitializeComponent();
             redakZaIzmjenu = currentRow;
+            this.Text = "Izmjena postrojbe";
         }
 
         private void frmPostrojba_Load(object sender, EventArgs e)
@@ -46,7 +47,7 @@ namespace oplan
                             }
                             foreach (var item in cmbTip.Items)
                             {
-                                if ((item as tip).id_tip == postrojba.id_tip)
+                                if ((item as tip_postrojbe).id_tip == postrojba.id_tip)
                                 {
                                     cmbTip.SelectedItem = item;
                                 }
@@ -62,6 +63,9 @@ namespace oplan
             }
         }
 
+        /// <summary>
+        /// Postavlja podatke iz baze u padajuće izbornike.
+        /// </summary>
         public void UcitajPodatke()
         {
             using (var db = new EntitiesSettings())
@@ -69,7 +73,7 @@ namespace oplan
                 cmbVrsta.DataSource = db.vrsta.ToList();
                 cmbVrsta.ValueMember = "id_vrsta";
                 cmbVrsta.DisplayMember = "naziv";
-                cmbTip.DataSource = db.tip.ToList();
+                cmbTip.DataSource = db.tip_postrojbe.ToList();
                 cmbTip.ValueMember = "id_tip";
                 cmbTip.DisplayMember = "naziv";
             }
@@ -97,12 +101,12 @@ namespace oplan
             {
                 using (var db = new EntitiesSettings())
                 {
-                    var item = cmbTip.SelectedItem as tip;
+                    var item = cmbTip.SelectedItem as tip_postrojbe;
                     int id = item.id_tip;
-                    var upit = (from t in db.tip
+                    var upit = (from t in db.tip_postrojbe
                                 where t.id_tip == id
                                 select t.opis).FirstOrDefault();
-                    tltTip.SetToolTip(lblTipHelp, String.Format(upit, Environment.NewLine));
+                    tltTip.SetToolTip(lblTipHelp, upit);
                 }
             }
         }
@@ -150,7 +154,7 @@ namespace oplan
         {
             var itemVrsta = cmbVrsta.SelectedItem as vrsta;
             int idVrsta = itemVrsta.id_vrsta;
-            var itemTip = cmbTip.SelectedItem as tip;
+            var itemTip = cmbTip.SelectedItem as tip_postrojbe;
             int idTip = itemTip.id_tip;
 
             if (RadSPostrojbama.ProvjeriPostrojbu(idVrsta, idTip, redakZaIzmjenu))
@@ -170,6 +174,7 @@ namespace oplan
                         db.SaveChanges();
                     }
                     MessageBox.Show("Uspješno ste dodali postrojbu.", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
                 else
                 {
@@ -191,7 +196,6 @@ namespace oplan
                     }
                     MessageBox.Show("Uspješno ste izmijenili postrojbu.", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                this.Close();
             }
             else
             {

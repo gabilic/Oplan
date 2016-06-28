@@ -25,25 +25,14 @@ namespace oplan
 
         private void btnPrijava_Click(object sender, EventArgs e)
         {
-            string poruka = "";
-            bool uspjeh = true;
-            if (!ProvjeraUnosa.ProvjeriTekst(txtKorime.Text))
+            string poruka = ProvjeraUnosa.ProvjeriOblik(txtKorime.Text, txtLozinka.Text);
+            if (poruka == null)
             {
-                poruka += "Korisničko ime može sadržavati samo velika i mala slova te brojeve!\n";
-                uspjeh = false;
-            }
-            if (!ProvjeraUnosa.ProvjeriTekst(txtLozinka.Text))
-            {
-                poruka += "Lozinka može sadržavati samo velika i mala slova te brojeve!\n";
-                uspjeh = false;
-            }
-            if (!uspjeh)
-            {
-                MessageBox.Show(poruka, "Pogreška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ProvjeraKorisnika.ProvjeriKorisnika(this, txtKorime.Text, txtLozinka.Text);
             }
             else
             {
-                ProvjeraKorisnika.ProvjeriKorisnika(this, txtKorime.Text, txtLozinka.Text);
+                MessageBox.Show(poruka, "Pogreška", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -60,7 +49,6 @@ namespace oplan
         ///<summary>
         ///Provjerava jesu li korisničko ime i lozinku prazni te omogućava gumb za prijavu.
         ///</summary>
-        ///<returns>Ne vraća ništa jer je tipa void.</returns>
         private void ProvjeraPraznogUnosa()
         {
             if (string.IsNullOrEmpty(txtKorime.Text) || string.IsNullOrEmpty(txtLozinka.Text))

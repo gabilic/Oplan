@@ -18,19 +18,44 @@ using System;
 public partial class tocka
 {
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public tocka()
+    {
+
+        this.tocka1 = new HashSet<tocka>();
+
+    }
+
+
     public int id_tocka { get; set; }
 
-    public double koord_x { get; set; }
+    public decimal koord_x { get; set; }
 
-    public double koord_y { get; set; }
+    public decimal koord_y { get; set; }
 
-    public string sadrzi_marker { get; set; }
+    public string marker { get; set; }
 
-    public int id_ruta { get; set; }
+    public Nullable<int> zavrsna { get; set; }
+
+    public int id_plan { get; set; }
+
+    public int id_postrojba { get; set; }
+
+    public int id_pripadnost { get; set; }
 
 
 
-    public virtual ruta ruta { get; set; }
+    public virtual plan plan { get; set; }
+
+    public virtual postrojba postrojba { get; set; }
+
+    public virtual pripadnost pripadnost { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<tocka> tocka1 { get; set; }
+
+    public virtual tocka tocka2 { get; set; }
 
 }
 

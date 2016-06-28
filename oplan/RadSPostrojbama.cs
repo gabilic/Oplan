@@ -13,13 +13,16 @@ namespace oplan
     {
         static private postrojba postrojba = null;
 
+        /// <summary>
+        /// Prikazuje popis postrojbi u glavnom prozoru.
+        /// </summary>
         static public void PrikaziPostrojbe(DataGridView dgvPostrojbe)
         {
             using (var db = new EntitiesSettings())
             {
                 var upit = from p in db.postrojba
                            join v in db.vrsta on p.id_vrsta equals v.id_vrsta
-                           join t in db.tip on p.id_tip equals t.id_tip
+                           join t in db.tip_postrojbe on p.id_tip equals t.id_tip
                            select new
                            {
                                ID = p.id_postrojba,
@@ -31,19 +34,24 @@ namespace oplan
                 dgvPostrojbe.DataSource = upit.ToList();
                 dgvPostrojbe.Columns[0].HeaderText = "ID postrojbe";
                 dgvPostrojbe.Columns[3].HeaderText = "Izdržljivost";
-                dgvPostrojbe.Columns[2].Width = 130;
-                dgvPostrojbe.Columns[3].Width = 80;
-                dgvPostrojbe.Columns[4].Width = 80;
+
+                dgvPostrojbe.Columns[2].Width = 140;
             }
         }
 
+        /// <summary>
+        /// Otvara novu formu za dodavanje nove postrojbe te prikazuje ažurirane postrojbe po završetku.
+        /// </summary>
         static public void DodajPostrojbu(DataGridView dgvPostrojbe)
         {
-            frmPostrojba formaPostrojba = new frmPostrojba();
+            frmDodajPostrojbu formaPostrojba = new frmDodajPostrojbu();
             formaPostrojba.ShowDialog();
             PrikaziPostrojbe(dgvPostrojbe);
         }
 
+        /// <summary>
+        /// Briše označenu postrojbu ako se ona ne kreće po niti jednoj ruti te prikazuje ažurirani popis postrojbi.
+        /// </summary>
         static public void IzbrisiPostrojbu(DataGridView dgvPostrojbe, DataGridViewRow currentRow)
         {
             if (currentRow != null)
@@ -57,7 +65,7 @@ namespace oplan
                         {
                             if (postrojba.id_postrojba == (int)currentRow.Cells[0].Value)
                             {
-                                if (postrojba.ruta.Count == 0)
+                                if (postrojba.tocka.Count == 0)
                                 {
                                     db.postrojba.Remove(postrojba);
                                     db.SaveChanges();
@@ -74,6 +82,10 @@ namespace oplan
             }
         }
 
+        /// <summary>
+        /// Provjerava je li postrojba bila mijenjana tijekom izmjene te postoji li takva u bazi podataka.
+        /// </summary>
+        /// <returns>True ako se postrojba može mijenjati, false ako se ne može.</returns>
         static public bool ProvjeriPostrojbu(int idVrsta, int idTip, DataGridViewRow redakZaIzmjenu)
         {
             bool promjena = false;
@@ -89,7 +101,7 @@ namespace oplan
                     var itemVrsta = (from v in db.vrsta
                                      where v.id_vrsta == idVrsta
                                      select v.naziv).FirstOrDefault();
-                    var itemTip = (from t in db.tip
+                    var itemTip = (from t in db.tip_postrojbe
                                    where t.id_tip == idTip
                                    select t.naziv).FirstOrDefault();
                     if (itemVrsta == redakZaIzmjenu.Cells[1].Value.ToString() && itemTip == redakZaIzmjenu.Cells[2].Value.ToString())
@@ -102,10 +114,13 @@ namespace oplan
                     }
                 }
             }
-
             return promjena;
         }
 
+        /// <summary>
+        /// Pomoću upita sa ključem vrste i tipa provjerava postoji li takva postrojba u bazi.
+        /// </summary>
+        /// <returns>True ako postrojba ne postoji, false ako postrojba postoji.</returns>
         static public bool ProvjeriPostojanjePostrojbe(int idVrsta, int idTip)
         {
             using (var db = new EntitiesSettings())
@@ -124,11 +139,14 @@ namespace oplan
             }
         }
 
+        /// <summary>
+        /// Prikazuje formu za izmjenu postrojbe te prikazuje ažurirane postrojbe po završetku.
+        /// </summary>
         static public void IzmijeniPostrojbu(DataGridView dgvPostrojbe, DataGridViewRow currentRow)
         {
             if (currentRow != null)
             {
-                frmPostrojba formaPostrojba = new frmPostrojba(currentRow);
+                frmDodajPostrojbu formaPostrojba = new frmDodajPostrojbu(currentRow);
                 formaPostrojba.ShowDialog();
                 PrikaziPostrojbe(dgvPostrojbe);
             }

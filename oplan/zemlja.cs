@@ -15,39 +15,27 @@ namespace oplan
 using System;
     using System.Collections.Generic;
     
-public partial class ruta
+public partial class zemlja
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public ruta()
+    public zemlja()
     {
 
-        this.tocka = new HashSet<tocka>();
-
-        this.postrojba = new HashSet<postrojba>();
+        this.oprema = new HashSet<oprema>();
 
     }
 
 
-    public int id_ruta { get; set; }
+    public int id_zemlja { get; set; }
 
-    public int id_pripadnost { get; set; }
-
-    public int id_plan { get; set; }
+    public string naziv { get; set; }
 
 
-
-    public virtual plan plan { get; set; }
-
-    public virtual pripadnost pripadnost { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<tocka> tocka { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<postrojba> postrojba { get; set; }
+    public virtual ICollection<oprema> oprema { get; set; }
 
 }
 

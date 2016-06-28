@@ -52,6 +52,7 @@
             // 
             this.txtKorime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtKorime.Location = new System.Drawing.Point(36, 130);
+            this.txtKorime.MaxLength = 20;
             this.txtKorime.Name = "txtKorime";
             this.txtKorime.Size = new System.Drawing.Size(218, 26);
             this.txtKorime.TabIndex = 1;
@@ -61,6 +62,7 @@
             // 
             this.txtLozinka.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtLozinka.Location = new System.Drawing.Point(36, 198);
+            this.txtLozinka.MaxLength = 15;
             this.txtLozinka.Name = "txtLozinka";
             this.txtLozinka.Size = new System.Drawing.Size(218, 26);
             this.txtLozinka.TabIndex = 2;

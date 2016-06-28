@@ -38,7 +38,8 @@
             this.ClientSize = new System.Drawing.Size(828, 438);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPlan";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Plan operacije";
             this.ResumeLayout(false);
 
