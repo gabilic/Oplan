@@ -19,10 +19,10 @@ namespace oplan
             InitializeComponent();
         }
 
-        public frmDodajPostrojbu(DataGridViewRow currentRow)
+        public frmDodajPostrojbu(DataGridViewRow redak)
         {
             InitializeComponent();
-            redakZaIzmjenu = currentRow;
+            redakZaIzmjenu = redak;
             this.Text = "Izmjena postrojbe";
         }
 

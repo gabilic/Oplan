@@ -16,5 +16,25 @@ namespace oplan
         {
             InitializeComponent();
         }
+
+        private void frmOprema_Load(object sender, EventArgs e)
+        {
+            PoslovnaLogika.PrikaziOpremu(dgvOprema);
+        }
+
+        private void btnDodajOpremu_Click(object sender, EventArgs e)
+        {
+            PoslovnaLogika.DodajOpremu(dgvOprema);
+        }
+
+        private void btnIzmijeniOpremu_Click(object sender, EventArgs e)
+        {
+            PoslovnaLogika.IzmijeniOpremu(dgvOprema, dgvOprema.CurrentRow);
+        }
+
+        private void btnIzbrisiOpremu_Click(object sender, EventArgs e)
+        {
+            PoslovnaLogika.IzbrisiOpremu(dgvOprema, dgvOprema.CurrentRow);
+        }
     }
 }

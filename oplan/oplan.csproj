@@ -165,6 +165,7 @@
     <Compile Include="plan.cs">
       <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
     </Compile>
+    <Compile Include="PoslovnaLogika.cs" />
     <Compile Include="postrojba.cs">
       <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
     </Compile>
@@ -202,6 +203,9 @@
     <EmbeddedResource Include="frmDnevnik.resx">
       <DependentUpon>frmDnevnik.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDodajOpremu.resx">
+      <DependentUpon>frmDodajOpremu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmIzbornik.resx">
       <DependentUpon>frmIzbornik.cs</DependentUpon>
     </EmbeddedResource>
@@ -210,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNaziv.resx">
       <DependentUpon>frmNaziv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOprema.resx">
+      <DependentUpon>frmOprema.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPostrojbe.resx">
       <DependentUpon>frmPostrojbe.cs</DependentUpon>

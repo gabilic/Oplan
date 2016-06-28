@@ -125,6 +125,7 @@
             this.btnOdustani.TabIndex = 8;
             this.btnOdustani.Text = "Odustani";
             this.btnOdustani.UseVisualStyleBackColor = true;
+            this.btnOdustani.Click += new System.EventHandler(this.btnOdustani_Click);
             // 
             // btnSpremi
             // 
@@ -135,6 +136,7 @@
             this.btnSpremi.TabIndex = 9;
             this.btnSpremi.Text = "Spremi";
             this.btnSpremi.UseVisualStyleBackColor = true;
+            this.btnSpremi.Click += new System.EventHandler(this.btnSpremi_Click);
             // 
             // frmDodajOpremu
             // 
@@ -151,10 +153,13 @@
             this.Controls.Add(this.lblZemlja);
             this.Controls.Add(this.lblTip);
             this.Controls.Add(this.lblModel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmDodajOpremu";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmDodajOpremu";
+            this.Text = "Dodavanje opreme";
+            this.Load += new System.EventHandler(this.frmDodajOpremu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

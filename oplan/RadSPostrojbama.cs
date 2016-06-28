@@ -34,7 +34,6 @@ namespace oplan
                 dgvPostrojbe.DataSource = upit.ToList();
                 dgvPostrojbe.Columns[0].HeaderText = "ID postrojbe";
                 dgvPostrojbe.Columns[3].HeaderText = "Izdržljivost";
-
                 dgvPostrojbe.Columns[2].Width = 140;
             }
         }
@@ -52,9 +51,9 @@ namespace oplan
         /// <summary>
         /// Briše označenu postrojbu ako se ona ne kreće po niti jednoj ruti te prikazuje ažurirani popis postrojbi.
         /// </summary>
-        static public void IzbrisiPostrojbu(DataGridView dgvPostrojbe, DataGridViewRow currentRow)
+        static public void IzbrisiPostrojbu(DataGridView dgvPostrojbe, DataGridViewRow redak)
         {
-            if (currentRow != null)
+            if (redak != null)
             {
                 if (MessageBox.Show("Da li ste sigurni da želite izbrisati odabranu postrojbu?", "Upozorenje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -63,7 +62,7 @@ namespace oplan
                         List<postrojba> listaPostrojbi = new List<postrojba>(db.postrojba.ToList());
                         foreach (var postrojba in listaPostrojbi)
                         {
-                            if (postrojba.id_postrojba == (int)currentRow.Cells[0].Value)
+                            if (postrojba.id_postrojba == (int)redak.Cells[0].Value)
                             {
                                 if (postrojba.tocka.Count == 0)
                                 {
@@ -142,11 +141,11 @@ namespace oplan
         /// <summary>
         /// Prikazuje formu za izmjenu postrojbe te prikazuje ažurirane postrojbe po završetku.
         /// </summary>
-        static public void IzmijeniPostrojbu(DataGridView dgvPostrojbe, DataGridViewRow currentRow)
+        static public void IzmijeniPostrojbu(DataGridView dgvPostrojbe, DataGridViewRow redak)
         {
-            if (currentRow != null)
+            if (redak != null)
             {
-                frmDodajPostrojbu formaPostrojba = new frmDodajPostrojbu(currentRow);
+                frmDodajPostrojbu formaPostrojba = new frmDodajPostrojbu(redak);
                 formaPostrojba.ShowDialog();
                 PrikaziPostrojbe(dgvPostrojbe);
             }

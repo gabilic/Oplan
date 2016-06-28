@@ -33,22 +33,22 @@
             this.miIzbornik = new System.Windows.Forms.ToolStripMenuItem();
             this.miIzbornikNoviPlan = new System.Windows.Forms.ToolStripMenuItem();
             this.miIzbornikUcitajPlan = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.miIzbornikArsenal = new System.Windows.Forms.ToolStripMenuItem();
+            this.miIzbornikOprema = new System.Windows.Forms.ToolStripMenuItem();
             this.tslCrta = new System.Windows.Forms.ToolStripSeparator();
             this.miIzbornikIzlaz = new System.Windows.Forms.ToolStripMenuItem();
             this.miAdministracija = new System.Windows.Forms.ToolStripMenuItem();
             this.miAdministracijaPostrojbe = new System.Windows.Forms.ToolStripMenuItem();
             this.miAdministracijaKorisnici = new System.Windows.Forms.ToolStripMenuItem();
+            this.miStatistika = new System.Windows.Forms.ToolStripMenuItem();
+            this.miStatistikaZemlje = new System.Windows.Forms.ToolStripMenuItem();
+            this.miStatistikaTipOpreme = new System.Windows.Forms.ToolStripMenuItem();
+            this.miStatistikaPostrojbe = new System.Windows.Forms.ToolStripMenuItem();
+            this.miStatistikaOprema = new System.Windows.Forms.ToolStripMenuItem();
             this.miPomoc = new System.Windows.Forms.ToolStripMenuItem();
             this.miPomocPrikaz = new System.Windows.Forms.ToolStripMenuItem();
             this.miPomocOPLAN = new System.Windows.Forms.ToolStripMenuItem();
-            this.statistikaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.opremaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.arsenalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.zemljeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tipOpremeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.postrojbeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.opremaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.msGlavni.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +57,7 @@
             this.msGlavni.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miIzbornik,
             this.miAdministracija,
-            this.statistikaToolStripMenuItem,
+            this.miStatistika,
             this.miPomoc});
             this.msGlavni.Location = new System.Drawing.Point(0, 0);
             this.msGlavni.Name = "msGlavni";
@@ -71,8 +71,8 @@
             this.miIzbornikNoviPlan,
             this.miIzbornikUcitajPlan,
             this.toolStripSeparator1,
-            this.arsenalToolStripMenuItem,
-            this.opremaToolStripMenuItem,
+            this.miIzbornikArsenal,
+            this.miIzbornikOprema,
             this.tslCrta,
             this.miIzbornikIzlaz});
             this.miIzbornik.Name = "miIzbornik";
@@ -94,6 +94,28 @@
             this.miIzbornikUcitajPlan.Size = new System.Drawing.Size(234, 22);
             this.miIzbornikUcitajPlan.Text = "Učitaj plan";
             this.miIzbornikUcitajPlan.Click += new System.EventHandler(this.miIzbornikUcitajPlan_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(231, 6);
+            // 
+            // miIzbornikArsenal
+            // 
+            this.miIzbornikArsenal.Name = "miIzbornikArsenal";
+            this.miIzbornikArsenal.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.A)));
+            this.miIzbornikArsenal.Size = new System.Drawing.Size(234, 22);
+            this.miIzbornikArsenal.Text = "Rad s arsenalom";
+            // 
+            // miIzbornikOprema
+            // 
+            this.miIzbornikOprema.Name = "miIzbornikOprema";
+            this.miIzbornikOprema.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.E)));
+            this.miIzbornikOprema.Size = new System.Drawing.Size(234, 22);
+            this.miIzbornikOprema.Text = "Rad s opremom";
+            this.miIzbornikOprema.Click += new System.EventHandler(this.miIzbornikOprema_Click);
             // 
             // tslCrta
             // 
@@ -135,6 +157,49 @@
             this.miAdministracijaKorisnici.Text = "Rad s korisnicima";
             this.miAdministracijaKorisnici.Click += new System.EventHandler(this.miAdministracijaKorisnici_Click);
             // 
+            // miStatistika
+            // 
+            this.miStatistika.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miStatistikaZemlje,
+            this.miStatistikaTipOpreme,
+            this.miStatistikaPostrojbe,
+            this.miStatistikaOprema});
+            this.miStatistika.Name = "miStatistika";
+            this.miStatistika.Size = new System.Drawing.Size(66, 20);
+            this.miStatistika.Text = "Statistika";
+            // 
+            // miStatistikaZemlje
+            // 
+            this.miStatistikaZemlje.Name = "miStatistikaZemlje";
+            this.miStatistikaZemlje.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.C)));
+            this.miStatistikaZemlje.Size = new System.Drawing.Size(199, 22);
+            this.miStatistikaZemlje.Text = "Zemlje";
+            // 
+            // miStatistikaTipOpreme
+            // 
+            this.miStatistikaTipOpreme.Name = "miStatistikaTipOpreme";
+            this.miStatistikaTipOpreme.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.T)));
+            this.miStatistikaTipOpreme.Size = new System.Drawing.Size(199, 22);
+            this.miStatistikaTipOpreme.Text = "Tip opreme";
+            // 
+            // miStatistikaPostrojbe
+            // 
+            this.miStatistikaPostrojbe.Name = "miStatistikaPostrojbe";
+            this.miStatistikaPostrojbe.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.D)));
+            this.miStatistikaPostrojbe.Size = new System.Drawing.Size(199, 22);
+            this.miStatistikaPostrojbe.Text = "Postrojbe";
+            // 
+            // miStatistikaOprema
+            // 
+            this.miStatistikaOprema.Name = "miStatistikaOprema";
+            this.miStatistikaOprema.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.E)));
+            this.miStatistikaOprema.Size = new System.Drawing.Size(199, 22);
+            this.miStatistikaOprema.Text = "Oprema";
+            // 
             // miPomoc
             // 
             this.miPomoc.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -158,72 +223,6 @@
             this.miPomocOPLAN.Size = new System.Drawing.Size(168, 22);
             this.miPomocOPLAN.Text = "O OPLAN-u";
             this.miPomocOPLAN.Click += new System.EventHandler(this.miPomocOPLAN_Click);
-            // 
-            // statistikaToolStripMenuItem
-            // 
-            this.statistikaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.zemljeToolStripMenuItem,
-            this.tipOpremeToolStripMenuItem,
-            this.postrojbeToolStripMenuItem,
-            this.opremaToolStripMenuItem1});
-            this.statistikaToolStripMenuItem.Name = "statistikaToolStripMenuItem";
-            this.statistikaToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
-            this.statistikaToolStripMenuItem.Text = "Statistika";
-            // 
-            // opremaToolStripMenuItem
-            // 
-            this.opremaToolStripMenuItem.Name = "opremaToolStripMenuItem";
-            this.opremaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.E)));
-            this.opremaToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
-            this.opremaToolStripMenuItem.Text = "Rad s opremom";
-            this.opremaToolStripMenuItem.Click += new System.EventHandler(this.opremaToolStripMenuItem_Click);
-            // 
-            // arsenalToolStripMenuItem
-            // 
-            this.arsenalToolStripMenuItem.Name = "arsenalToolStripMenuItem";
-            this.arsenalToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.A)));
-            this.arsenalToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
-            this.arsenalToolStripMenuItem.Text = "Rad s arsenalom";
-            this.arsenalToolStripMenuItem.Click += new System.EventHandler(this.arsenalToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(231, 6);
-            // 
-            // zemljeToolStripMenuItem
-            // 
-            this.zemljeToolStripMenuItem.Name = "zemljeToolStripMenuItem";
-            this.zemljeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-            | System.Windows.Forms.Keys.C)));
-            this.zemljeToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.zemljeToolStripMenuItem.Text = "Zemlje";
-            // 
-            // tipOpremeToolStripMenuItem
-            // 
-            this.tipOpremeToolStripMenuItem.Name = "tipOpremeToolStripMenuItem";
-            this.tipOpremeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-            | System.Windows.Forms.Keys.T)));
-            this.tipOpremeToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.tipOpremeToolStripMenuItem.Text = "Tip opreme";
-            // 
-            // postrojbeToolStripMenuItem
-            // 
-            this.postrojbeToolStripMenuItem.Name = "postrojbeToolStripMenuItem";
-            this.postrojbeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-            | System.Windows.Forms.Keys.D)));
-            this.postrojbeToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.postrojbeToolStripMenuItem.Text = "Postrojbe";
-            // 
-            // opremaToolStripMenuItem1
-            // 
-            this.opremaToolStripMenuItem1.Name = "opremaToolStripMenuItem1";
-            this.opremaToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-            | System.Windows.Forms.Keys.E)));
-            this.opremaToolStripMenuItem1.Size = new System.Drawing.Size(199, 22);
-            this.opremaToolStripMenuItem1.Text = "Oprema";
             // 
             // frmIzbornik
             // 
@@ -259,13 +258,13 @@
         private System.Windows.Forms.ToolStripMenuItem miPomocOPLAN;
         private System.Windows.Forms.ToolStripSeparator tslCrta;
         private System.Windows.Forms.ToolStripMenuItem miIzbornikIzlaz;
-        private System.Windows.Forms.ToolStripMenuItem statistikaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem opremaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem arsenalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem miStatistika;
+        private System.Windows.Forms.ToolStripMenuItem miIzbornikOprema;
+        private System.Windows.Forms.ToolStripMenuItem miIzbornikArsenal;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem zemljeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tipOpremeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem postrojbeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem opremaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem miStatistikaZemlje;
+        private System.Windows.Forms.ToolStripMenuItem miStatistikaTipOpreme;
+        private System.Windows.Forms.ToolStripMenuItem miStatistikaPostrojbe;
+        private System.Windows.Forms.ToolStripMenuItem miStatistikaOprema;
     }
 }

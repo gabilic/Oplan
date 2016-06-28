@@ -64,14 +64,10 @@ namespace oplan
 
         }
 
-        private void opremaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void miIzbornikOprema_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void arsenalToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+            frmOprema oprema = new frmOprema();
+            oprema.ShowDialog();
         }
     }
 }
