@@ -17,7 +17,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.70583cm</Height>
+              <Height>0.67938cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -236,8 +236,8 @@
         </TablixRowHierarchy>
         <DataSetName>dsIzvjestaj</DataSetName>
         <Top>1.26682cm</Top>
-        <Left>0.04834cm</Left>
-        <Height>1.30583cm</Height>
+        <Left>0.05167cm</Left>
+        <Height>1.27938cm</Height>
         <Width>16.9cm</Width>
         <Style>
           <Border>
@@ -264,7 +264,7 @@
         </Paragraphs>
         <rd:DefaultName>Korisnik</rd:DefaultName>
         <Top>0.36724cm</Top>
-        <Left>5.0653cm</Left>
+        <Left>5.06863cm</Left>
         <Height>0.6cm</Height>
         <Width>2.75777cm</Width>
         <ZIndex>1</ZIndex>
@@ -298,7 +298,7 @@
         </Paragraphs>
         <rd:DefaultName>Administrator</rd:DefaultName>
         <Top>0.36724cm</Top>
-        <Left>15.90354cm</Left>
+        <Left>15.90687cm</Left>
         <Height>0.6cm</Height>
         <Width>1.04479cm</Width>
         <ZIndex>2</ZIndex>
@@ -330,7 +330,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
         <Top>0.36724cm</Top>
-        <Left>13.41104cm</Left>
+        <Left>13.41437cm</Left>
         <Height>0.6cm</Height>
         <Width>2.76458cm</Width>
         <ZIndex>3</ZIndex>
@@ -362,6 +362,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
         <Top>0.36724cm</Top>
+        <Left>0.00333cm</Left>
         <Height>0.6cm</Height>
         <Width>5.17014cm</Width>
         <ZIndex>4</ZIndex>
@@ -378,7 +379,7 @@
     <Height>2.88562cm</Height>
     <Style />
   </Body>
-  <Width>17cm</Width>
+  <Width>17.00333cm</Width>
   <Page>
     <PageHeader>
       <Height>2.96209cm</Height>
@@ -390,7 +391,7 @@
           <Value>grb</Value>
           <Sizing>FitProportional</Sizing>
           <Top>0.05113cm</Top>
-          <Left>0.6cm</Left>
+          <Left>0.60333cm</Left>
           <Height>1.5cm</Height>
           <Width>1.23542cm</Width>
           <Style>
@@ -421,7 +422,7 @@ HRVATSKA</Value>
           </Paragraphs>
           <rd:DefaultName>Textbox6</rd:DefaultName>
           <Top>1.65696cm</Top>
-          <Left>0.04834cm</Left>
+          <Left>0.05167cm</Left>
           <Height>1.17368cm</Height>
           <Width>2.48167cm</Width>
           <ZIndex>1</ZIndex>
@@ -469,7 +470,7 @@ HRVATSKA</Value>
           </Paragraphs>
           <rd:DefaultName>Textbox8</rd:DefaultName>
           <Top>0.08641cm</Top>
-          <Left>0.04834cm</Left>
+          <Left>0.05167cm</Left>
           <Height>0.75875cm</Height>
           <Width>16.9cm</Width>
           <ZIndex>2</ZIndex>
@@ -505,7 +506,7 @@ PLANIRANJE "OPLAN"</Value>
           </Paragraphs>
           <rd:DefaultName>Textbox9</rd:DefaultName>
           <Top>0.69356cm</Top>
-          <Left>0.1cm</Left>
+          <Left>0.10333cm</Left>
           <Height>1.34484cm</Height>
           <Width>16.9cm</Width>
           <ZIndex>3</ZIndex>
@@ -526,7 +527,7 @@ PLANIRANJE "OPLAN"</Value>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>="Zagreb, " + Today.ToString("d. MMMM yyyy.")</Value>
+                  <Value>="Varaždin, " + Today.ToString("d. MMMM yyyy.")</Value>
                   <Style>
                     <FontFamily>Times New Roman</FontFamily>
                     <FontSize>12pt</FontSize>
@@ -539,8 +540,7 @@ PLANIRANJE "OPLAN"</Value>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox10</rd:DefaultName>
-          <Top>2.0384cm</Top>
-          <Left>0.04834cm</Left>
+          <Top>2.18cm</Top>
           <Height>0.6cm</Height>
           <Width>16.95166cm</Width>
           <ZIndex>4</ZIndex>
@@ -572,7 +572,7 @@ PLANIRANJE "OPLAN"</Value>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>0.08641cm</Top>
-          <Left>14.54891cm</Left>
+          <Left>14.55224cm</Left>
           <Height>2.03923cm</Height>
           <Width>1.91775cm</Width>
           <ZIndex>5</ZIndex>
@@ -623,7 +623,7 @@ PLANIRANJE "OPLAN"</Value>
           </Paragraphs>
           <rd:DefaultName>Textbox5</rd:DefaultName>
           <Top>0.3307cm</Top>
-          <Left>13.75833cm</Left>
+          <Left>13.76166cm</Left>
           <Height>0.52062cm</Height>
           <Width>3.19333cm</Width>
           <Style>
@@ -643,7 +643,7 @@ PLANIRANJE "OPLAN"</Value>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Ministrarstvo Obrane Republike Hrvatske</Value>
+                  <Value>Fakultet organizacije i informatike, Varaždin</Value>
                   <Style>
                     <FontFamily>Times New Roman</FontFamily>
                     <FontSize>12pt</FontSize>
@@ -655,6 +655,7 @@ PLANIRANJE "OPLAN"</Value>
           </Paragraphs>
           <rd:DefaultName>Textbox7</rd:DefaultName>
           <Top>0.3307cm</Top>
+          <Left>0.00333cm</Left>
           <Height>0.6cm</Height>
           <Width>8.50604cm</Width>
           <ZIndex>1</ZIndex>

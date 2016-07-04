@@ -83,6 +83,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsIzvjestaj.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dsNaoruzanje.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsNaoruzanje.xsd</DependentUpon>
+    </Compile>
     <Compile Include="frmDnevnik.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +123,12 @@
     </Compile>
     <Compile Include="frmKorisnici.Designer.cs">
       <DependentUpon>frmKorisnici.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNaoruzanje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNaoruzanje.Designer.cs">
+      <DependentUpon>frmNaoruzanje.cs</DependentUpon>
     </Compile>
     <Compile Include="frmNaziv.cs">
       <SubType>Form</SubType>
@@ -212,6 +223,9 @@
     <EmbeddedResource Include="frmKorisnici.resx">
       <DependentUpon>frmKorisnici.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmNaoruzanje.resx">
+      <DependentUpon>frmNaoruzanje.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmNaziv.resx">
       <DependentUpon>frmNaziv.cs</DependentUpon>
     </EmbeddedResource>
@@ -241,6 +255,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="rptDnevnik.rdlc" />
+    <EmbeddedResource Include="rptNaoruzanje.rdlc" />
     <EntityDeploy Include="BazaPodatakaOPLAN.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BazaPodatakaOPLAN.Designer.cs</LastGenOutput>
@@ -258,6 +273,17 @@
     </None>
     <None Include="dsIzvjestaj.xss">
       <DependentUpon>dsIzvjestaj.xsd</DependentUpon>
+    </None>
+    <None Include="dsNaoruzanje.xsc">
+      <DependentUpon>dsNaoruzanje.xsd</DependentUpon>
+    </None>
+    <None Include="dsNaoruzanje.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsNaoruzanje.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsNaoruzanje.xss">
+      <DependentUpon>dsNaoruzanje.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\korisnik.datasource" />

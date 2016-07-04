@@ -10,8 +10,6 @@ namespace oplan
 {
     class Izvjestaji
     {
-        static private promjena promjena = null;
-
         /// <summary>
         /// Provjerava postoje li zapisi u dnevniku rada za određenog korisnika.
         /// </summary>
@@ -20,7 +18,7 @@ namespace oplan
         {
             using (var db = new EntitiesSettings())
             {
-                promjena = (from p in db.promjena
+                var promjena = (from p in db.promjena
                             where p.id_korisnik == id_korisnik
                             select p).FirstOrDefault<promjena>();
                 if (promjena == null)
@@ -63,6 +61,34 @@ namespace oplan
             }
         }
 
+        static public void PrikaziPopis(int odabranaPostrojba, ReportViewer rpvNaoruzanje)
+        {
+            using (var db = new EntitiesSettings())
+            {
+                var upit = (from p in db.postrojba
+                            from o in p.oprema
+                            join s in db.oprema on o.id_oprema equals s.id_oprema
+                            join v in db.vrsta on p.id_vrsta equals v.id_vrsta
+                            join t in db.tip_postrojbe on p.id_tip equals t.id_tip
+                            join z in db.zemlja on s.id_zemlja equals z.id_zemlja
+                            join m in db.tip_opreme on s.id_tip_oprema equals m.id_tip_oprema
+                            where p.id_postrojba == odabranaPostrojba
+                            select new
+                            {
+                                Postrojba = v.naziv + " - " + t.naziv,
+                                Tip = m.naziv,
+                                Model = s.model,
+                                Zemlja = z.naziv
+                            }).ToList();
+
+                rpvNaoruzanje.LocalReport.DataSources.Clear();
+                ReportDataSource izvorPodataka = new ReportDataSource("dsNaoruzanje", upit);
+                rpvNaoruzanje.LocalReport.DataSources.Add(izvorPodataka);
+                rpvNaoruzanje.LocalReport.ReportEmbeddedResource = "oplan.rptNaoruzanje.rdlc";
+                rpvNaoruzanje.RefreshReport();
+            }
+        }
+
         /// <summary>
         /// Briše sve zapise u dnevniku rada za određenog korisnika.
         /// </summary>
@@ -70,15 +96,33 @@ namespace oplan
         {
             using (var db = new EntitiesSettings())
             {
-                var upit = from p in db.promjena
-                           where p.id_korisnik == id_korisnik
-                           select p;
+                var upit = (from p in db.promjena
+                            where p.id_korisnik == id_korisnik
+                            select p).ToList<promjena>();
 
                 foreach (var promjena in upit)
                 {
                     db.promjena.Remove(promjena);
                 }
                 db.SaveChanges();
+            }
+        }
+
+        static public bool ProvjeriOpremu(int id_postrojba)
+        {
+            using (var db = new EntitiesSettings())
+            {
+                var upit = (from p in db.postrojba
+                            where p.id_postrojba == id_postrojba
+                            select p).FirstOrDefault<postrojba>();
+                if (upit.oprema.Count == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
     }

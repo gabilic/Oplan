@@ -34,6 +34,7 @@
             this.btnIzbrisiPostrojbu = new System.Windows.Forms.Button();
             this.btnDodajPostrojbu = new System.Windows.Forms.Button();
             this.btnIzmijeniPostrojbu = new System.Windows.Forms.Button();
+            this.btnPopis = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPostrojbe)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,11 +96,23 @@
             this.btnIzmijeniPostrojbu.UseVisualStyleBackColor = true;
             this.btnIzmijeniPostrojbu.Click += new System.EventHandler(this.btnIzmijeniPostrojbu_Click);
             // 
+            // btnPopis
+            // 
+            this.btnPopis.Font = new System.Drawing.Font("Calibri", 10F);
+            this.btnPopis.Location = new System.Drawing.Point(13, 378);
+            this.btnPopis.Name = "btnPopis";
+            this.btnPopis.Size = new System.Drawing.Size(120, 32);
+            this.btnPopis.TabIndex = 5;
+            this.btnPopis.Text = "Popis opreme";
+            this.btnPopis.UseVisualStyleBackColor = true;
+            this.btnPopis.Click += new System.EventHandler(this.btnPopis_Click);
+            // 
             // frmPostrojbe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 422);
+            this.Controls.Add(this.btnPopis);
             this.Controls.Add(this.btnIzmijeniPostrojbu);
             this.Controls.Add(this.btnDodajPostrojbu);
             this.Controls.Add(this.btnIzbrisiPostrojbu);
@@ -120,5 +133,6 @@
         private System.Windows.Forms.Button btnIzbrisiPostrojbu;
         private System.Windows.Forms.Button btnDodajPostrojbu;
         private System.Windows.Forms.Button btnIzmijeniPostrojbu;
+        private System.Windows.Forms.Button btnPopis;
     }
 }

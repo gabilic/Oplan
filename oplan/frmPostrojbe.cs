@@ -36,5 +36,11 @@ namespace oplan
         {
             RadSPostrojbama.IzbrisiPostrojbu(dgvPostrojbe, dgvPostrojbe.CurrentRow);
         }
+
+        private void btnPopis_Click(object sender, EventArgs e)
+        {
+            string naziv = dgvPostrojbe.CurrentRow.Cells[1].Value.ToString() + " - " + dgvPostrojbe.CurrentRow.Cells[2].Value.ToString();
+            RadSPostrojbama.PrikaziOpremu((int)dgvPostrojbe.CurrentRow.Cells[0].Value, naziv);
+        }
     }
 }

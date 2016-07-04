@@ -51,9 +51,9 @@ namespace oplan
         /// <summary>
         /// Briše označenu postrojbu ako se ona ne kreće po niti jednoj ruti te prikazuje ažurirani popis postrojbi.
         /// </summary>
-        static public void IzbrisiPostrojbu(DataGridView dgvPostrojbe, DataGridViewRow redak)
+        static public void IzbrisiPostrojbu(DataGridView dgvPostrojbe, DataGridViewRow currentRow)
         {
-            if (redak != null)
+            if (currentRow != null)
             {
                 if (MessageBox.Show("Da li ste sigurni da želite izbrisati odabranu postrojbu?", "Upozorenje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -62,16 +62,24 @@ namespace oplan
                         List<postrojba> listaPostrojbi = new List<postrojba>(db.postrojba.ToList());
                         foreach (var postrojba in listaPostrojbi)
                         {
-                            if (postrojba.id_postrojba == (int)redak.Cells[0].Value)
+                            if (postrojba.id_postrojba == (int)currentRow.Cells[0].Value)
                             {
                                 if (postrojba.tocka.Count == 0)
                                 {
-                                    db.postrojba.Remove(postrojba);
-                                    db.SaveChanges();
+                                    if (postrojba.oprema.Count == 0)
+                                    {
+                                        db.postrojba.Remove(postrojba);
+                                        MessageBox.Show("Uspješno ste obrisali postrojbu.", "Informacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                    else
+                                    {
+                                        //pitati dal se hoće obrisati i sve dodjele opreme u arsenalu i implementirati
+                                        MessageBox.Show("Nije moguće izbrisati postrojbu kojoj je dodjeljena oprema!", "Pogreška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Nije moguće izbrisati postrojbu koja se kreće po postojećoj ruti!", "Pogreška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("Nije moguće izbrisati postrojbu koja je na postojećem planu!", "Pogreška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                         }
@@ -148,6 +156,19 @@ namespace oplan
                 frmDodajPostrojbu formaPostrojba = new frmDodajPostrojbu(redak);
                 formaPostrojba.ShowDialog();
                 PrikaziPostrojbe(dgvPostrojbe);
+            }
+        }
+
+        static public void PrikaziOpremu(int id_postrojbe, string naziv)
+        {
+            if (Izvjestaji.ProvjeriOpremu(id_postrojbe))
+            {
+                frmNaoruzanje popisOpreme = new frmNaoruzanje(id_postrojbe, naziv);
+                popisOpreme.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Ovoj postrojbi nije dodjeljena niti jedna oprema.", "Informacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

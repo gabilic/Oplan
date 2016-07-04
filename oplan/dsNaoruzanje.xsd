@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsNaoruzanje" targetNamespace="http://tempuri.org/dsNaoruzanje.xsd" xmlns:mstns="http://tempuri.org/dsNaoruzanje.xsd" xmlns="http://tempuri.org/dsNaoruzanje.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsNaoruzanje" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsNaoruzanje" msprop:Generator_UserDSName="dsNaoruzanje">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtNaoruzanje" msprop:Generator_TableClassName="dtNaoruzanjeDataTable" msprop:Generator_TableVarName="tabledtNaoruzanje" msprop:Generator_TablePropName="dtNaoruzanje" msprop:Generator_RowDeletingName="dtNaoruzanjeRowDeleting" msprop:Generator_RowChangingName="dtNaoruzanjeRowChanging" msprop:Generator_RowEvHandlerName="dtNaoruzanjeRowChangeEventHandler" msprop:Generator_RowDeletedName="dtNaoruzanjeRowDeleted" msprop:Generator_UserTableName="dtNaoruzanje" msprop:Generator_RowChangedName="dtNaoruzanjeRowChanged" msprop:Generator_RowEvArgName="dtNaoruzanjeRowChangeEvent" msprop:Generator_RowClassName="dtNaoruzanjeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Postrojba" msprop:Generator_ColumnVarNameInTable="columnPostrojba" msprop:Generator_ColumnPropNameInRow="Postrojba" msprop:Generator_ColumnPropNameInTable="PostrojbaColumn" msprop:Generator_UserColumnName="Postrojba" type="xs:string" minOccurs="0" />
+              <xs:element name="Tip" msprop:Generator_ColumnVarNameInTable="columnTip" msprop:Generator_ColumnPropNameInRow="Tip" msprop:Generator_ColumnPropNameInTable="TipColumn" msprop:Generator_UserColumnName="Tip" type="xs:string" minOccurs="0" />
+              <xs:element name="Model" msprop:Generator_ColumnVarNameInTable="columnModel" msprop:Generator_ColumnPropNameInRow="Model" msprop:Generator_ColumnPropNameInTable="ModelColumn" msprop:Generator_UserColumnName="Model" type="xs:string" minOccurs="0" />
+              <xs:element name="Zemlja" msprop:Generator_ColumnVarNameInTable="columnZemlja" msprop:Generator_ColumnPropNameInRow="Zemlja" msprop:Generator_ColumnPropNameInTable="ZemljaColumn" msprop:Generator_UserColumnName="Zemlja" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
