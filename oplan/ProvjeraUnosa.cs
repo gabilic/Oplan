@@ -28,7 +28,7 @@ namespace oplan
         }
 
         ///<summary>
-        ///Provjerava jesu li u upisanom brojke, slova ili razmak.
+        ///Provjerava jesu li u upisanom polju brojke, slova ili razmak.
         ///</summary>
         ///<param name="tekst">Tekst označen za provjeru</param>
         ///<returns>True ako je unos u redu, false ako nije.</returns>

@@ -240,6 +240,18 @@
     <Compile Include="ucCitac.Designer.cs">
       <DependentUpon>ucCitac.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucUnosModela.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucUnosModela.Designer.cs">
+      <DependentUpon>ucUnosModela.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucUnosOpisa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucUnosOpisa.Designer.cs">
+      <DependentUpon>ucUnosOpisa.cs</DependentUpon>
+    </Compile>
     <Compile Include="vrsta.cs">
       <DependentUpon>BazaPodatakaOPLAN.tt</DependentUpon>
     </Compile>
@@ -311,6 +323,12 @@
     <EmbeddedResource Include="rptNaoruzanje.rdlc" />
     <EmbeddedResource Include="ucCitac.resx">
       <DependentUpon>ucCitac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucUnosModela.resx">
+      <DependentUpon>ucUnosModela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucUnosOpisa.resx">
+      <DependentUpon>ucUnosOpisa.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="BazaPodatakaOPLAN.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

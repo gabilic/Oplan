@@ -48,8 +48,10 @@ namespace oplan
 
         private void frmDodajOpremu_Load(object sender, EventArgs e)
         {
-            btnSpremi.Enabled = false;
             UcitajPodatke();
+            ucModel.PromjenaTeksta += new EventHandler(ucModel_TextChanged);
+            ucOpis.PromjenaTeksta += new EventHandler(ucOpis_TextChanged);
+            ProvjeraPraznogUnosa();
             if (redakZaIzmjenu != null)
             {
                 using (var db = new EntitiesSettings())
@@ -74,8 +76,8 @@ namespace oplan
                                 }
                             }
 
-                            txtModel.Text = oprema.model;
-                            txtOpis.Text = oprema.opis;
+                            ucModel.Text = oprema.model;
+                            ucOpis.Text = oprema.opis;
                         }
                     }
                 }
@@ -87,7 +89,7 @@ namespace oplan
         ///</summary>
         private void ProvjeraPraznogUnosa()
         {
-            if (string.IsNullOrEmpty(txtModel.Text) || string.IsNullOrEmpty(txtOpis.Text))
+            if (string.IsNullOrEmpty(ucModel.Text) || string.IsNullOrEmpty(ucOpis.Text))
             {
                 btnSpremi.Enabled = false;
             }
@@ -103,7 +105,7 @@ namespace oplan
             int idTipOpreme = itemTipOpreme.id_tip_oprema;
             var itemZemlja = cmbZemlja.SelectedItem as zemlja;
             int idZemlja = itemZemlja.id_zemlja;
-            string model = txtModel.Text;
+            string model = ucModel.Text;
 
             if (RadSOpremom.ProvjeriOpremu(idTipOpreme, idZemlja, model, redakZaIzmjenu))
             {
@@ -111,8 +113,8 @@ namespace oplan
                 {
                     oprema oprema = new oprema
                     {
-                        model = txtModel.Text,
-                        opis = txtOpis.Text,
+                        model = ucModel.Text,
+                        opis = ucOpis.Text,
                         id_tip_oprema = idTipOpreme,
                         id_zemlja = idZemlja
                     };
@@ -133,8 +135,8 @@ namespace oplan
                         {
                             if (oprema.id_oprema == (int)redakZaIzmjenu.Cells[0].Value)
                             {
-                                oprema.model = txtModel.Text;
-                                oprema.opis = txtOpis.Text;
+                                oprema.model = ucModel.Text;
+                                oprema.opis = ucOpis.Text;
                                 oprema.id_tip_oprema = idTipOpreme;
                                 oprema.id_zemlja = idZemlja;
 
@@ -156,12 +158,12 @@ namespace oplan
             this.Close();
         }
 
-        private void txtModel_TextChanged(object sender, EventArgs e)
+        private void ucModel_TextChanged(object sender, EventArgs e)
         {
             ProvjeraPraznogUnosa();
         }
 
-        private void txtOpis_TextChanged(object sender, EventArgs e)
+        private void ucOpis_TextChanged(object sender, EventArgs e)
         {
             ProvjeraPraznogUnosa();
         }
