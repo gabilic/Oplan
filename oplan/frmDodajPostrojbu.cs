@@ -19,10 +19,14 @@ namespace oplan
             InitializeComponent();
         }
 
-        public frmDodajPostrojbu(DataGridViewRow redak)
+        /// <summary>
+        /// Konstruktor klase koji se poziva pri promjeni postrojbe.
+        /// </summary>
+        /// <param name="currentRow">Redak koji se mijenja</param>
+        public frmDodajPostrojbu(DataGridViewRow currentRow)
         {
             InitializeComponent();
-            redakZaIzmjenu = redak;
+            redakZaIzmjenu = currentRow;
             this.Text = "Izmjena postrojbe";
         }
 
@@ -64,7 +68,7 @@ namespace oplan
         }
 
         /// <summary>
-        /// Postavlja podatke iz baze u padajuće izbornike.
+        /// Postavlja podatke o vrsti i tipu iz baze u padajuće izbornike.
         /// </summary>
         public void UcitajPodatke()
         {

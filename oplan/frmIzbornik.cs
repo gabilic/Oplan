@@ -14,6 +14,11 @@ namespace oplan
     {
         private int prijavljeniKorisnik;
 
+        /// <summary>
+        /// Konstruktor klase koji na temelju uloge korisnika skriva ili prikazuje opcije za administraciju.
+        /// </summary>
+        /// <param name="administrator">Administracijsko stanje u kojem je trenutni korisnik</param>
+        /// <param name="id">ID trenutno prijavljenog korisnika</param>
         public frmIzbornik(bool administrator, int id)
         {
             InitializeComponent();
@@ -32,7 +37,7 @@ namespace oplan
 
         private void miAdministracijaKorisnici_Click(object sender, EventArgs e)
         {
-            frmKorisnici korisnici = new frmKorisnici();
+            frmKorisnici korisnici = new frmKorisnici(prijavljeniKorisnik);
             korisnici.ShowDialog();
         }
 
@@ -43,31 +48,52 @@ namespace oplan
 
         private void miIzbornikNoviPlan_Click(object sender, EventArgs e)
         {
-            frmPlan formaPlan = new frmPlan();
-            formaPlan.MdiParent = this;
-            formaPlan.WindowState = FormWindowState.Maximized;
-            formaPlan.Show();
+            this.WindowState = FormWindowState.Maximized;
+            List<tocka> t = new List<tocka>();
+            int zt = RadSPlanovima.najdiZadnjiId();
+            /*Form1 NoviPlan = new Form1(prijavljeniKorisnik, t);
+            NoviPlan.Text = "Novi Operacijski plan";
+            NoviPlan.WindowState = FormWindowState.Maximized;
+            NoviPlan.Show();*/
         }
 
         private void miIzbornikUcitajPlan_Click(object sender, EventArgs e)
         {
-
+            frmUcitaj ucutajPLan = new frmUcitaj();
+            ucutajPLan.ShowDialog();
         }
 
         private void miPomocPrikaz_Click(object sender, EventArgs e)
         {
-
+            string putanja = @"../../help/oplan.chm";
+            if (System.IO.File.Exists(putanja))
+            {
+                Help.ShowHelp(this, putanja);
+            }
         }
 
         private void miPomocOPLAN_Click(object sender, EventArgs e)
         {
-
+            frmAbout oNama = new frmAbout();
+            oNama.ShowDialog();
         }
 
-        private void miIzbornikOprema_Click(object sender, EventArgs e)
+        private void miStatistikaZemlje_Click(object sender, EventArgs e)
         {
-            frmOprema oprema = new frmOprema();
-            oprema.ShowDialog();
+            frmStatistika zemlje = new frmStatistika();
+            zemlje.ShowDialog();
+        }
+
+        private void miIzbornikArsenal_Click(object sender, EventArgs e)
+        {
+            frmArsenal pregledArsenala = new frmArsenal();
+            pregledArsenala.ShowDialog();
+        }
+
+        private void miIzboenikOprema_Click(object sender, EventArgs e)
+        {
+            frmOprema pregledOpreme = new frmOprema();
+            pregledOpreme.ShowDialog();
         }
     }
 }

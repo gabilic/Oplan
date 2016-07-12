@@ -156,7 +156,7 @@
             this.btnOdustani.UseVisualStyleBackColor = true;
             this.btnOdustani.Click += new System.EventHandler(this.btnOdustani_Click);
             // 
-            // frmKorisnik
+            // frmDodajKorisnika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -173,7 +173,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "frmKorisnik";
+            this.Name = "frmDodajKorisnika";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dodavanje korisnika";

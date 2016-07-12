@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDnevnik));
             this.rtvDnevnik = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.pomoc = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // rtvDnevnik
@@ -43,14 +44,22 @@
             this.rtvDnevnik.Size = new System.Drawing.Size(1008, 730);
             this.rtvDnevnik.TabIndex = 0;
             // 
+            // pomoc
+            // 
+            this.pomoc.HelpNamespace = "../../help/oplan.chm";
+            // 
             // frmDnevnik
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 730);
             this.Controls.Add(this.rtvDnevnik);
+            this.pomoc.SetHelpKeyword(this, "F1");
+            this.pomoc.SetHelpNavigator(this, System.Windows.Forms.HelpNavigator.TableOfContents);
+            this.pomoc.SetHelpString(this, "F1");
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDnevnik";
+            this.pomoc.SetShowHelp(this, true);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDnevnik";
             this.Load += new System.EventHandler(this.frmDnevnik_Load);
@@ -61,5 +70,6 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer rtvDnevnik;
+        private System.Windows.Forms.HelpProvider pomoc;
     }
 }

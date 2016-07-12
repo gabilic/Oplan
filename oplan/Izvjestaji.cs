@@ -11,16 +11,17 @@ namespace oplan
     class Izvjestaji
     {
         /// <summary>
-        /// Provjerava postoje li zapisi u dnevniku rada za određenog korisnika.
+        /// Provjerava postoje li zapisi u dnevniku rada za odabranog korisnika.
         /// </summary>
+        /// <param name="id_korisnik">ID korisnika koji se provjerava</param>
         /// <returns>False ako ne postoji zapis, true ako postoji barem jedan.</returns>
         static public bool ProvjeriIzvjestaj(int id_korisnik)
         {
             using (var db = new EntitiesSettings())
             {
                 var promjena = (from p in db.promjena
-                            where p.id_korisnik == id_korisnik
-                            select p).FirstOrDefault<promjena>();
+                                where p.id_korisnik == id_korisnik
+                                select p).FirstOrDefault<promjena>();
                 if (promjena == null)
                 {
                     return false;
@@ -33,8 +34,10 @@ namespace oplan
         }
 
         /// <summary>
-        /// Pronalazi i proslijeđuje podatke izvještaju za odabranog korisnika.
+        /// Na temelju LINQ upita pronalazi i proslijeđuje podatke izvještaju za odabranog korisnika.
         /// </summary>
+        /// <param name="odabraniKorisnik">Korisnik odabran za ispis izvješća</param>
+        /// <param name="rtvDnevnik">Pregledavač izvještaja na formi</param>
         static public void PrikaziIzvjestaj(korisnik odabraniKorisnik, ReportViewer rtvDnevnik)
         {
             korisnik korisnik = odabraniKorisnik;
@@ -61,6 +64,11 @@ namespace oplan
             }
         }
 
+        /// <summary>
+        /// Na temelju LINQ upita pronalazi i proslijeđuje podatke izvještaju za odabranu postrojbu.
+        /// </summary>
+        /// <param name="odabranaPostrojba">Postrojba odabrana za ispis popisa opreme</param>
+        /// <param name="rpvNaoruzanje">Pregledavač izvještaja na formi</param>
         static public void PrikaziPopis(int odabranaPostrojba, ReportViewer rpvNaoruzanje)
         {
             using (var db = new EntitiesSettings())
@@ -90,8 +98,9 @@ namespace oplan
         }
 
         /// <summary>
-        /// Briše sve zapise u dnevniku rada za određenog korisnika.
+        /// Briše sve zapise u dnevniku rada za odabranog korisnika.
         /// </summary>
+        /// <param name="id_korisnik">ID korisnika kojem se briše izvještaj</param>
         static public void IzbrisiIzvjestaj(int id_korisnik)
         {
             using (var db = new EntitiesSettings())
@@ -108,6 +117,11 @@ namespace oplan
             }
         }
 
+        /// <summary>
+        /// Provjerava ima li postrojba dodjeljenu opremu u arsenalu.
+        /// </summary>
+        /// <param name="id_postrojba">ID postrojbe kojoj se provjerava arsenal</param>
+        /// <returns>True ako postrojba ima dodjeljenu opremu, false ako nema.</returns>
         static public bool ProvjeriOpremu(int id_postrojba)
         {
             using (var db = new EntitiesSettings())

@@ -10,10 +10,11 @@ namespace oplan
 {
     class ProvjeraUnosa
     {
-        ///<summary>
-        ///Provjerava jesu li u upisanom polju brojke i slova.
-        ///</summary>
-        ///<returns>True ako je unos u redu, false ako nije.</returns>
+        /// <summary>
+        /// Provjerava jesu li u upisanom polju brojke i slova.
+        /// </summary>
+        /// <param name="tekst">Tekst označen za provjeru</param>
+        /// <returns>True ako je unos u redu, false ako nije.</returns>
         static public bool ProvjeriTekst (string tekst)
         {
             if (Regex.IsMatch(tekst, @"^[a-zA-Z0-9]+$"))
@@ -27,8 +28,9 @@ namespace oplan
         }
 
         ///<summary>
-        ///Provjerava jesu li u upisanom brojke, slova i razmak.
+        ///Provjerava jesu li u upisanom brojke, slova ili razmak.
         ///</summary>
+        ///<param name="tekst">Tekst označen za provjeru</param>
         ///<returns>True ako je unos u redu, false ako nije.</returns>
         static public bool ProvjeriNaziv (string tekst)
         {
@@ -45,6 +47,8 @@ namespace oplan
         /// <summary>
         /// Provjerava jesu li korisničko ime i lozinka pravilno upisani.
         /// </summary>
+        /// <param name="Korime">Korisničko ime u teksutalnom obliku</param>
+        /// <param name="Lozinka">Lozinka u tekstualnom obliku</param>
         /// <returns>Tekst pogreške ako se dogodila ili null ako je upis u redu.</returns>
         static public string ProvjeriOblik (string Korime, string Lozinka)
         {

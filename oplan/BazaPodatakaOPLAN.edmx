@@ -98,7 +98,7 @@
           <Key>
             <PropertyRef Name="id_tocka" />
           </Key>
-          <Property Name="id_tocka" Type="int" Nullable="false" />
+          <Property Name="id_tocka" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="koord_x" Type="decimal" Precision="18" Scale="14" Nullable="false" />
           <Property Name="koord_y" Type="decimal" Precision="18" Scale="14" Nullable="false" />
           <Property Name="marker" Type="nchar" MaxLength="2" Nullable="false" />
@@ -354,20 +354,6 @@
           <NavigationProperty Name="promjena" Relationship="DBModelOPLAN.FK_radnja_plan" FromRole="plan" ToRole="promjena" />
           <NavigationProperty Name="tocka" Relationship="DBModelOPLAN.FK_tocka_plan" FromRole="plan" ToRole="tocka" />
         </EntityType>
-        <EntityType Name="postrojba">
-          <Key>
-            <PropertyRef Name="id_postrojba" />
-          </Key>
-          <Property Name="id_postrojba" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="izdrzljivost" Type="Double" Nullable="false" />
-          <Property Name="brzina" Type="Double" Nullable="false" />
-          <Property Name="id_vrsta" Type="Int32" Nullable="false" />
-          <Property Name="id_tip" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="vrsta" Relationship="Self.FK_postrojba_vrsta" FromRole="postrojba" ToRole="vrsta" />
-          <NavigationProperty Name="tip_postrojbe" Relationship="DBModelOPLAN.FK_postrojba_tip" FromRole="postrojba" ToRole="tip_postrojbe" />
-          <NavigationProperty Name="tocka" Relationship="DBModelOPLAN.FK_tocka_postrojba" FromRole="postrojba" ToRole="tocka" />
-          <NavigationProperty Name="oprema" Relationship="DBModelOPLAN.arsenal" FromRole="postrojba" ToRole="oprema" />
-        </EntityType>
         <EntityType Name="pripadnost">
           <Key>
             <PropertyRef Name="id_pripadnost" />
@@ -394,31 +380,14 @@
           <Property Name="naziv" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="oznaka" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="postrojba" Relationship="Self.FK_postrojba_vrsta" FromRole="vrsta" ToRole="postrojba" />
+          <NavigationProperty Name="postrojba" Relationship="DBModelOPLAN.FK_postrojba_vrsta" FromRole="vrsta" ToRole="postrojba" />
         </EntityType>
-        <Association Name="FK_postrojba_vrsta">
-          <End Role="vrsta" Type="Self.vrsta" Multiplicity="1" />
-          <End Role="postrojba" Type="Self.postrojba" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="vrsta">
-              <PropertyRef Name="id_vrsta" />
-            </Principal>
-            <Dependent Role="postrojba">
-              <PropertyRef Name="id_vrsta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="EntitiesSettings" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="korisnik" EntityType="Self.korisnik" />
           <EntitySet Name="plan" EntityType="Self.plan" />
-          <EntitySet Name="postrojba" EntityType="Self.postrojba" />
           <EntitySet Name="pripadnost" EntityType="Self.pripadnost" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="vrsta" EntityType="Self.vrsta" />
-          <AssociationSet Name="FK_postrojba_vrsta" Association="Self.FK_postrojba_vrsta">
-            <End Role="vrsta" EntitySet="vrsta" />
-            <End Role="postrojba" EntitySet="postrojba" />
-          </AssociationSet>
           <EntitySet Name="promjena" EntityType="DBModelOPLAN.promjena" />
           <AssociationSet Name="FK_radnja_korisnik" Association="DBModelOPLAN.FK_radnja_korisnik">
             <End Role="korisnik" EntitySet="korisnik" />
@@ -429,14 +398,34 @@
             <End Role="promjena" EntitySet="promjena" />
           </AssociationSet>
           <EntitySet Name="tip_postrojbe" EntityType="DBModelOPLAN.tip_postrojbe" />
+          <EntitySet Name="oprema" EntityType="DBModelOPLAN.oprema" />
+          <EntitySet Name="tip_opreme" EntityType="DBModelOPLAN.tip_opreme" />
+          <EntitySet Name="zemlja" EntityType="DBModelOPLAN.zemlja" />
+          <AssociationSet Name="FK_oprema_tip_opreme" Association="DBModelOPLAN.FK_oprema_tip_opreme">
+            <End Role="tip_opreme" EntitySet="tip_opreme" />
+            <End Role="oprema" EntitySet="oprema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_oprema_zemlja" Association="DBModelOPLAN.FK_oprema_zemlja">
+            <End Role="zemlja" EntitySet="zemlja" />
+            <End Role="oprema" EntitySet="oprema" />
+          </AssociationSet>
+          <EntitySet Name="postrojba" EntityType="DBModelOPLAN.postrojba" />
+          <AssociationSet Name="FK_postrojba_tip" Association="DBModelOPLAN.FK_postrojba_tip">
+            <End Role="tip_postrojbe" EntitySet="tip_postrojbe" />
+            <End Role="postrojba" EntitySet="postrojba" />
+          </AssociationSet>
+          <AssociationSet Name="FK_postrojba_vrsta" Association="DBModelOPLAN.FK_postrojba_vrsta">
+            <End Role="vrsta" EntitySet="vrsta" />
+            <End Role="postrojba" EntitySet="postrojba" />
+          </AssociationSet>
+          <AssociationSet Name="arsenal" Association="DBModelOPLAN.arsenal">
+            <End Role="oprema" EntitySet="oprema" />
+            <End Role="postrojba" EntitySet="postrojba" />
+          </AssociationSet>
           <EntitySet Name="tocka" EntityType="DBModelOPLAN.tocka" />
           <AssociationSet Name="FK_tocka_plan" Association="DBModelOPLAN.FK_tocka_plan">
             <End Role="plan" EntitySet="plan" />
             <End Role="tocka" EntitySet="tocka" />
-          </AssociationSet>
-          <AssociationSet Name="FK_postrojba_tip" Association="DBModelOPLAN.FK_postrojba_tip">
-            <End Role="tip_postrojbe" EntitySet="tip_postrojbe" />
-            <End Role="postrojba" EntitySet="postrojba" />
           </AssociationSet>
           <AssociationSet Name="FK_tocka_postrojba" Association="DBModelOPLAN.FK_tocka_postrojba">
             <End Role="postrojba" EntitySet="postrojba" />
@@ -449,21 +438,6 @@
           <AssociationSet Name="FK_tocka_tocka" Association="DBModelOPLAN.FK_tocka_tocka">
             <End Role="tocka" EntitySet="tocka" />
             <End Role="tocka1" EntitySet="tocka" />
-          </AssociationSet>
-          <EntitySet Name="oprema" EntityType="DBModelOPLAN.oprema" />
-          <EntitySet Name="tip_opreme" EntityType="DBModelOPLAN.tip_opreme" />
-          <EntitySet Name="zemlja" EntityType="DBModelOPLAN.zemlja" />
-          <AssociationSet Name="FK_oprema_tip_opreme" Association="DBModelOPLAN.FK_oprema_tip_opreme">
-            <End Role="tip_opreme" EntitySet="tip_opreme" />
-            <End Role="oprema" EntitySet="oprema" />
-          </AssociationSet>
-          <AssociationSet Name="FK_oprema_zemlja" Association="DBModelOPLAN.FK_oprema_zemlja">
-            <End Role="zemlja" EntitySet="zemlja" />
-            <End Role="oprema" EntitySet="oprema" />
-          </AssociationSet>
-          <AssociationSet Name="arsenal" Association="DBModelOPLAN.arsenal">
-            <End Role="oprema" EntitySet="oprema" />
-            <End Role="postrojba" EntitySet="postrojba" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="promjena">
@@ -513,84 +487,6 @@
           <Property Name="ikona_enemy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="postrojba" Relationship="DBModelOPLAN.FK_postrojba_tip" FromRole="tip_postrojbe" ToRole="postrojba" />
         </EntityType>
-        <EntityType Name="tocka">
-          <Key>
-            <PropertyRef Name="id_tocka" />
-          </Key>
-          <Property Name="id_tocka" Type="Int32" Nullable="false" />
-          <Property Name="koord_x" Type="Decimal" Nullable="false" Precision="18" Scale="14" />
-          <Property Name="koord_y" Type="Decimal" Nullable="false" Precision="18" Scale="14" />
-          <Property Name="marker" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
-          <Property Name="zavrsna" Type="Int32" />
-          <Property Name="id_plan" Type="Int32" Nullable="false" />
-          <Property Name="id_postrojba" Type="Int32" Nullable="false" />
-          <Property Name="id_pripadnost" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="plan" Relationship="DBModelOPLAN.FK_tocka_plan" FromRole="tocka" ToRole="plan" />
-          <NavigationProperty Name="postrojba" Relationship="DBModelOPLAN.FK_tocka_postrojba" FromRole="tocka" ToRole="postrojba" />
-          <NavigationProperty Name="pripadnost" Relationship="DBModelOPLAN.FK_tocka_pripadnost" FromRole="tocka" ToRole="pripadnost" />
-          <NavigationProperty Name="tocka1" Relationship="DBModelOPLAN.FK_tocka_tocka" FromRole="tocka" ToRole="tocka1" />
-          <NavigationProperty Name="tocka2" Relationship="DBModelOPLAN.FK_tocka_tocka" FromRole="tocka1" ToRole="tocka" />
-        </EntityType>
-        <Association Name="FK_tocka_plan">
-          <End Type="DBModelOPLAN.plan" Role="plan" Multiplicity="1" />
-          <End Type="DBModelOPLAN.tocka" Role="tocka" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="plan">
-              <PropertyRef Name="id_plan" />
-            </Principal>
-            <Dependent Role="tocka">
-              <PropertyRef Name="id_plan" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_postrojba_tip">
-          <End Type="DBModelOPLAN.tip_postrojbe" Role="tip_postrojbe" Multiplicity="1" />
-          <End Type="DBModelOPLAN.postrojba" Role="postrojba" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tip_postrojbe">
-              <PropertyRef Name="id_tip" />
-            </Principal>
-            <Dependent Role="postrojba">
-              <PropertyRef Name="id_tip" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tocka_postrojba">
-          <End Type="DBModelOPLAN.postrojba" Role="postrojba" Multiplicity="1" />
-          <End Type="DBModelOPLAN.tocka" Role="tocka" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="postrojba">
-              <PropertyRef Name="id_postrojba" />
-            </Principal>
-            <Dependent Role="tocka">
-              <PropertyRef Name="id_postrojba" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tocka_pripadnost">
-          <End Type="DBModelOPLAN.pripadnost" Role="pripadnost" Multiplicity="1" />
-          <End Type="DBModelOPLAN.tocka" Role="tocka" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="pripadnost">
-              <PropertyRef Name="id_pripadnost" />
-            </Principal>
-            <Dependent Role="tocka">
-              <PropertyRef Name="id_pripadnost" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tocka_tocka">
-          <End Type="DBModelOPLAN.tocka" Role="tocka" Multiplicity="0..1" />
-          <End Type="DBModelOPLAN.tocka" Role="tocka1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tocka">
-              <PropertyRef Name="id_tocka" />
-            </Principal>
-            <Dependent Role="tocka1">
-              <PropertyRef Name="zavrsna" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="oprema">
           <Key>
             <PropertyRef Name="id_oprema" />
@@ -644,9 +540,113 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="postrojba">
+          <Key>
+            <PropertyRef Name="id_postrojba" />
+          </Key>
+          <Property Name="id_postrojba" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="izdrzljivost" Type="Double" Nullable="false" />
+          <Property Name="brzina" Type="Double" Nullable="false" />
+          <Property Name="id_vrsta" Type="Int32" Nullable="false" />
+          <Property Name="id_tip" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tip_postrojbe" Relationship="DBModelOPLAN.FK_postrojba_tip" FromRole="postrojba" ToRole="tip_postrojbe" />
+          <NavigationProperty Name="vrsta" Relationship="DBModelOPLAN.FK_postrojba_vrsta" FromRole="postrojba" ToRole="vrsta" />
+          <NavigationProperty Name="oprema" Relationship="DBModelOPLAN.arsenal" FromRole="postrojba" ToRole="oprema" />
+          <NavigationProperty Name="tocka" Relationship="DBModelOPLAN.FK_tocka_postrojba" FromRole="postrojba" ToRole="tocka" />
+        </EntityType>
+        <Association Name="FK_postrojba_tip">
+          <End Type="DBModelOPLAN.tip_postrojbe" Role="tip_postrojbe" Multiplicity="1" />
+          <End Type="DBModelOPLAN.postrojba" Role="postrojba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tip_postrojbe">
+              <PropertyRef Name="id_tip" />
+            </Principal>
+            <Dependent Role="postrojba">
+              <PropertyRef Name="id_tip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_postrojba_vrsta">
+          <End Type="DBModelOPLAN.vrsta" Role="vrsta" Multiplicity="1" />
+          <End Type="DBModelOPLAN.postrojba" Role="postrojba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vrsta">
+              <PropertyRef Name="id_vrsta" />
+            </Principal>
+            <Dependent Role="postrojba">
+              <PropertyRef Name="id_vrsta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="arsenal">
           <End Type="DBModelOPLAN.oprema" Role="oprema" Multiplicity="*" />
           <End Type="DBModelOPLAN.postrojba" Role="postrojba" Multiplicity="*" />
+        </Association>
+        <EntityType Name="tocka">
+          <Key>
+            <PropertyRef Name="id_tocka" />
+          </Key>
+          <Property Name="id_tocka" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="koord_x" Type="Decimal" Nullable="false" Precision="18" Scale="14" />
+          <Property Name="koord_y" Type="Decimal" Nullable="false" Precision="18" Scale="14" />
+          <Property Name="marker" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="zavrsna" Type="Int32" />
+          <Property Name="id_plan" Type="Int32" Nullable="false" />
+          <Property Name="id_postrojba" Type="Int32" Nullable="false" />
+          <Property Name="id_pripadnost" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="plan" Relationship="DBModelOPLAN.FK_tocka_plan" FromRole="tocka" ToRole="plan" />
+          <NavigationProperty Name="postrojba" Relationship="DBModelOPLAN.FK_tocka_postrojba" FromRole="tocka" ToRole="postrojba" />
+          <NavigationProperty Name="pripadnost" Relationship="DBModelOPLAN.FK_tocka_pripadnost" FromRole="tocka" ToRole="pripadnost" />
+          <NavigationProperty Name="tocka1" Relationship="DBModelOPLAN.FK_tocka_tocka" FromRole="tocka" ToRole="tocka1" />
+          <NavigationProperty Name="tocka2" Relationship="DBModelOPLAN.FK_tocka_tocka" FromRole="tocka1" ToRole="tocka" />
+        </EntityType>
+        <Association Name="FK_tocka_plan">
+          <End Type="DBModelOPLAN.plan" Role="plan" Multiplicity="1" />
+          <End Type="DBModelOPLAN.tocka" Role="tocka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plan">
+              <PropertyRef Name="id_plan" />
+            </Principal>
+            <Dependent Role="tocka">
+              <PropertyRef Name="id_plan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tocka_postrojba">
+          <End Type="DBModelOPLAN.postrojba" Role="postrojba" Multiplicity="1" />
+          <End Type="DBModelOPLAN.tocka" Role="tocka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="postrojba">
+              <PropertyRef Name="id_postrojba" />
+            </Principal>
+            <Dependent Role="tocka">
+              <PropertyRef Name="id_postrojba" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tocka_pripadnost">
+          <End Type="DBModelOPLAN.pripadnost" Role="pripadnost" Multiplicity="1" />
+          <End Type="DBModelOPLAN.tocka" Role="tocka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pripadnost">
+              <PropertyRef Name="id_pripadnost" />
+            </Principal>
+            <Dependent Role="tocka">
+              <PropertyRef Name="id_pripadnost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tocka_tocka">
+          <End Type="DBModelOPLAN.tocka" Role="tocka" Multiplicity="0..1" />
+          <End Type="DBModelOPLAN.tocka" Role="tocka1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tocka">
+              <PropertyRef Name="id_tocka" />
+            </Principal>
+            <Dependent Role="tocka1">
+              <PropertyRef Name="zavrsna" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -670,17 +670,6 @@
                 <ScalarProperty Name="id_plan" ColumnName="id_plan" />
                 <ScalarProperty Name="naziv" ColumnName="naziv" />
                 <ScalarProperty Name="datum" ColumnName="datum" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="postrojba">
-            <EntityTypeMapping TypeName="DBModelOPLAN.postrojba">
-              <MappingFragment StoreEntitySet="postrojba">
-                <ScalarProperty Name="id_postrojba" ColumnName="id_postrojba" />
-                <ScalarProperty Name="izdrzljivost" ColumnName="izdrzljivost" />
-                <ScalarProperty Name="brzina" ColumnName="brzina" />
-                <ScalarProperty Name="id_vrsta" ColumnName="id_vrsta" />
-                <ScalarProperty Name="id_tip" ColumnName="id_tip" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -734,20 +723,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tocka">
-            <EntityTypeMapping TypeName="DBModelOPLAN.tocka">
-              <MappingFragment StoreEntitySet="tocka">
-                <ScalarProperty Name="id_pripadnost" ColumnName="id_pripadnost" />
-                <ScalarProperty Name="id_postrojba" ColumnName="id_postrojba" />
-                <ScalarProperty Name="id_plan" ColumnName="id_plan" />
-                <ScalarProperty Name="zavrsna" ColumnName="zavrsna" />
-                <ScalarProperty Name="marker" ColumnName="marker" />
-                <ScalarProperty Name="koord_y" ColumnName="koord_y" />
-                <ScalarProperty Name="koord_x" ColumnName="koord_x" />
-                <ScalarProperty Name="id_tocka" ColumnName="id_tocka" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="oprema">
             <EntityTypeMapping TypeName="DBModelOPLAN.oprema">
               <MappingFragment StoreEntitySet="oprema">
@@ -775,6 +750,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="postrojba">
+            <EntityTypeMapping TypeName="DBModelOPLAN.postrojba">
+              <MappingFragment StoreEntitySet="postrojba">
+                <ScalarProperty Name="id_tip" ColumnName="id_tip" />
+                <ScalarProperty Name="id_vrsta" ColumnName="id_vrsta" />
+                <ScalarProperty Name="brzina" ColumnName="brzina" />
+                <ScalarProperty Name="izdrzljivost" ColumnName="izdrzljivost" />
+                <ScalarProperty Name="id_postrojba" ColumnName="id_postrojba" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <AssociationSetMapping Name="arsenal" TypeName="DBModelOPLAN.arsenal" StoreEntitySet="arsenal">
             <EndProperty Name="postrojba">
               <ScalarProperty Name="id_postrojba" ColumnName="id_postrojba" />
@@ -783,6 +769,20 @@
               <ScalarProperty Name="id_oprema" ColumnName="id_oprema" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="tocka">
+            <EntityTypeMapping TypeName="DBModelOPLAN.tocka">
+              <MappingFragment StoreEntitySet="tocka">
+                <ScalarProperty Name="id_pripadnost" ColumnName="id_pripadnost" />
+                <ScalarProperty Name="id_postrojba" ColumnName="id_postrojba" />
+                <ScalarProperty Name="id_plan" ColumnName="id_plan" />
+                <ScalarProperty Name="zavrsna" ColumnName="zavrsna" />
+                <ScalarProperty Name="marker" ColumnName="marker" />
+                <ScalarProperty Name="koord_y" ColumnName="koord_y" />
+                <ScalarProperty Name="koord_x" ColumnName="koord_x" />
+                <ScalarProperty Name="id_tocka" ColumnName="id_tocka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

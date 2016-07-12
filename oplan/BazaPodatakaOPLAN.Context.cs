@@ -36,8 +36,6 @@ public partial class EntitiesSettings : DbContext
 
     public virtual DbSet<plan> plan { get; set; }
 
-    public virtual DbSet<postrojba> postrojba { get; set; }
-
     public virtual DbSet<pripadnost> pripadnost { get; set; }
 
     public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
@@ -48,13 +46,15 @@ public partial class EntitiesSettings : DbContext
 
     public virtual DbSet<tip_postrojbe> tip_postrojbe { get; set; }
 
-    public virtual DbSet<tocka> tocka { get; set; }
-
     public virtual DbSet<oprema> oprema { get; set; }
 
     public virtual DbSet<tip_opreme> tip_opreme { get; set; }
 
     public virtual DbSet<zemlja> zemlja { get; set; }
+
+    public virtual DbSet<postrojba> postrojba { get; set; }
+
+    public virtual DbSet<tocka> tocka { get; set; }
 
 }
 

@@ -12,9 +12,11 @@ namespace oplan
 {
     public partial class frmNaziv : Form
     {
-        private string nazivPlana;
+        //private string nazivPlana;
+        //private int prijavljeniKorisnik;
+        //private List<Tocka> tocke;
 
-        public frmNaziv()
+   /*     public frmNaziv()
         {
             InitializeComponent();
         }
@@ -25,17 +27,24 @@ namespace oplan
             nazivPlana = naziv;
             txtNaziv.Text = nazivPlana;
             this.Text = "Izmjena naziva";
-        }
+        }*/
 
-        private void frmNaziv_Load(object sender, EventArgs e)
+        /*public frmNaziv(int korisnik, List<Tocka> Tocke_argument)
+        {
+            InitializeComponent();
+            prijavljeniKorisnik = korisnik;
+            tocke = Tocke_argument;
+        }*/
+
+        /*private void frmNaziv_Load(object sender, EventArgs e)
         {
             if (nazivPlana == null)
             {
                 btnPotvrdi.Enabled = false;
             }
-        }
+        }*/
 
-        private void btnPotvrdi_Click(object sender, EventArgs e)
+        /*private void btnPotvrdi_Click(object sender, EventArgs e)
         {
             if (ProvjeraUnosa.ProvjeriNaziv(txtNaziv.Text))
             {
@@ -43,7 +52,8 @@ namespace oplan
                 {
                     if (!RadSPlanovima.ProvjeriPlan(txtNaziv.Text))
                     {
-                        //spremi ili kaj god
+                        RadSPlanovima.SpremiPlan(prijavljeniKorisnik, txtNaziv.Text);
+                        //RadSPlanovima.SpremListuTocke(tocke);
                         MessageBox.Show("Uspješno ste spremili plan.", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
@@ -60,7 +70,9 @@ namespace oplan
                     }
                     else
                     {
-                        RadSPlanovima.PromjeniNaziv(nazivPlana, txtNaziv.Text);
+                        RadSPlanovima.PromijeniNaziv(nazivPlana, txtNaziv.Text);
+                        RadSPlanovima.SpremiPlan(prijavljeniKorisnik, txtNaziv.Text);
+                        
                         MessageBox.Show("Uspješno ste izmijenili naziv.", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
@@ -70,7 +82,7 @@ namespace oplan
             {
                 MessageBox.Show("Naziv može sadržavati slova, brojke i razmak!", "Pogreška", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        }*/
 
         private void txtNaziv_TextChanged(object sender, EventArgs e)
         {

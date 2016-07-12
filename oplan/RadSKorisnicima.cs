@@ -13,6 +13,7 @@ namespace oplan
         /// <summary>
         /// Prikazuje popis korisnika u bazi pomoću liste korisnika.
         /// </summary>
+        /// <param name="korisnikBindingSource">Naziv vezanog izvora podataka</param>
         static public void PrikaziKorisnike(BindingSource korisnikBindingSource)
         {
             BindingList<korisnik> listaKorisnika = null;
@@ -26,6 +27,7 @@ namespace oplan
         /// <summary>
         /// Prikazuje formu za dodavanje korisnika te prikazuje ažurirane korisnike po završetku.
         /// </summary>
+        /// <param name="korisnikBindingSource">Naziv vezanog izvora podataka</param>
         static public void DodajKorisnika(BindingSource korisnikBindingSource)
         {
             frmDodajKorisnika formaKorisnik = new frmDodajKorisnika();
@@ -34,8 +36,9 @@ namespace oplan
         }
 
         /// <summary>
-        /// Briše korisnika ako nema zapisa u dnevniku, a u suprotnom briše i njih ukoliko je korisnik to potvrdio.
+        /// Briše korisnika ako nema zapisa u dnevniku, a u suprotnom briše i zapise ukoliko je korisnik to potvrdio.
         /// </summary>
+        /// <param name="korisnikBindingSource">Naziv vezanog izvora podataka</param>
         static public void IzbrisiKorisnika(BindingSource korisnikBindingSource)
         {
             korisnik korisnik = korisnikBindingSource.Current as korisnik;
@@ -73,11 +76,13 @@ namespace oplan
         /// <summary>
         /// Prikazuje formu za izmjenu korisnika te prikazuje ažurirane korisnike po završetku.
         /// </summary>
-        static public void IzmijeniKorisnika(BindingSource korisnikBindingSource)
+        /// <param name="korisnikBindingSource">Naziv vezanog izvora podataka</param>
+        /// <param name="id">ID korisnika označenog za brisanje</param>
+        static public void IzmijeniKorisnika(BindingSource korisnikBindingSource, int id)
         {
             if (korisnikBindingSource.Current as korisnik != null)
             {
-                frmDodajKorisnika formaKorisnik = new frmDodajKorisnika(korisnikBindingSource.Current as korisnik);
+                frmDodajKorisnika formaKorisnik = new frmDodajKorisnika(korisnikBindingSource.Current as korisnik, id);
                 formaKorisnik.ShowDialog();
                 PrikaziKorisnike(korisnikBindingSource);
             }

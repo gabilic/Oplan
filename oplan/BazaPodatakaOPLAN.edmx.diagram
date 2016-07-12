@@ -7,27 +7,27 @@
       <Diagram DiagramId="60ee5630ca4f4cec8a7601898224e27c" Name="Diagram1">
         <EntityTypeShape EntityType="DBModelOPLAN.korisnik" Width="1.5" PointX="8.375" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelOPLAN.plan" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModelOPLAN.postrojba" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelOPLAN.pripadnost" Width="1.5" PointX="0.625" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModelOPLAN.sysdiagrams" Width="1.5" PointX="10.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelOPLAN.sysdiagrams" Width="1.5" PointX="8.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelOPLAN.vrsta" Width="1.5" PointX="0.5" PointY="4" IsExpanded="true" />
-        <AssociationConnector Association="DBModelOPLAN.FK_postrojba_vrsta" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DBModelOPLAN.promjena" Width="1.5" PointX="8.375" PointY="7" />
         <AssociationConnector Association="DBModelOPLAN.FK_radnja_korisnik" />
         <AssociationConnector Association="DBModelOPLAN.FK_radnja_plan" />
         <EntityTypeShape EntityType="DBModelOPLAN.tip_postrojbe" Width="1.5" PointX="5.75" PointY="4.125" />
-        <EntityTypeShape EntityType="DBModelOPLAN.tocka" Width="1.5" PointX="3" PointY="7.125" />
-        <AssociationConnector Association="DBModelOPLAN.FK_tocka_plan" />
-        <AssociationConnector Association="DBModelOPLAN.FK_postrojba_tip" />
-        <AssociationConnector Association="DBModelOPLAN.FK_tocka_postrojba" />
-        <AssociationConnector Association="DBModelOPLAN.FK_tocka_pripadnost" />
-        <AssociationConnector Association="DBModelOPLAN.FK_tocka_tocka" />
         <EntityTypeShape EntityType="DBModelOPLAN.oprema" Width="1.5" PointX="3" PointY="0.5" />
         <EntityTypeShape EntityType="DBModelOPLAN.tip_opreme" Width="1.5" PointX="5.625" PointY="0.875" />
         <EntityTypeShape EntityType="DBModelOPLAN.zemlja" Width="1.5" PointX="0.5" PointY="0.875" />
         <AssociationConnector Association="DBModelOPLAN.FK_oprema_tip_opreme" />
         <AssociationConnector Association="DBModelOPLAN.FK_oprema_zemlja" />
+        <EntityTypeShape EntityType="DBModelOPLAN.postrojba" Width="1.5" PointX="3" PointY="3.75" />
+        <AssociationConnector Association="DBModelOPLAN.FK_postrojba_tip" />
+        <AssociationConnector Association="DBModelOPLAN.FK_postrojba_vrsta" />
         <AssociationConnector Association="DBModelOPLAN.arsenal" />
+        <EntityTypeShape EntityType="DBModelOPLAN.tocka" Width="1.5" PointX="3.125" PointY="7.125" />
+        <AssociationConnector Association="DBModelOPLAN.FK_tocka_plan" />
+        <AssociationConnector Association="DBModelOPLAN.FK_tocka_postrojba" />
+        <AssociationConnector Association="DBModelOPLAN.FK_tocka_pripadnost" />
+        <AssociationConnector Association="DBModelOPLAN.FK_tocka_tocka" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

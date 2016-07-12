@@ -41,7 +41,6 @@
             this.btnPotvrdi.TabIndex = 0;
             this.btnPotvrdi.Text = "Potvrdi";
             this.btnPotvrdi.UseVisualStyleBackColor = true;
-            this.btnPotvrdi.Click += new System.EventHandler(this.btnPotvrdi_Click);
             // 
             // txtNaziv
             // 
@@ -64,7 +63,6 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Naziv plana";
-            this.Load += new System.EventHandler(this.frmNaziv_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -15,6 +15,10 @@ namespace oplan
     {
         private korisnik odabraniKorisnik;
 
+        /// <summary>
+        /// Konstruktor u kojem se proslijeđuje korisnik odabran za ispis dnevnika rada.
+        /// </summary>
+        /// <param name="trenutniKorisnik">Korisnik koji je odabran za ispis</param>
         public frmDnevnik(korisnik trenutniKorisnik)
         {
             InitializeComponent();
@@ -34,6 +38,7 @@ namespace oplan
         /// <summary>
         /// Određuje naslov forme koja prikazuje izvještaj za određenog korisnika.
         /// </summary>
+        /// <param name="korisnik">Odabrani korisnik</param>
         /// <returns>Tekst koji predstavlja naslov forme.</returns>
         public string IspisiNaslov(korisnik korisnik)
         {

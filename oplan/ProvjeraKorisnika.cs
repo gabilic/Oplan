@@ -11,10 +11,12 @@ namespace oplan
     {
         static private korisnik korisnik = null;
 
-        ///<summary>
-        ///Provjerava jesu li korisničko ime i lozinka jednaki zapisu u bazi za tog korisnika.
-        ///Ako je zapis nađen, otvara odgovarajuću formu te joj proslijeđuje podatke o korisniku.
-        ///</summary>
+        /// <summary>
+        /// Provjerava jesu li korisničko ime i lozinka jednaki zapisu u bazi te otvara formu na temelju uloga korisnika.
+        /// </summary>
+        /// <param name="prijava">Naziv forme za prijavu.</param>
+        /// <param name="korisnickoIme">Korisničko ime u teksutalnom obliku.</param>
+        /// <param name="lozinka">Lozinka u tekstualnom obliku.</param>
         static public void ProvjeriKorisnika(frmPrijava prijava, string korisnickoIme, string lozinka)
         {
             if (!ProvjeriKorisnickoIme(korisnickoIme))
@@ -42,9 +44,10 @@ namespace oplan
             } 
         }
 
-        ///<summary>
-        ///Provjerava postoji li korisničko ime u bazi podataka.
-        ///</summary>
+        /// <summary>
+        /// Provjerava postoji li korisničko ime u bazi podataka.
+        /// </summary>
+        /// <param name="korisnickoIme">Korisničko ime u tekstualnom obliku.</param>
         ///<returns>True ako korisničko ime postoji, false ako ne postoji.</returns>
         static public bool ProvjeriKorisnickoIme(string korisnickoIme)
         {

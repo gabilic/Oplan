@@ -12,7 +12,6 @@ namespace oplan
 {
     public partial class frmPrijava : Form
     {
-
         public frmPrijava()
         {
             InitializeComponent();
@@ -47,7 +46,7 @@ namespace oplan
         }
 
         ///<summary>
-        ///Provjerava jesu li korisničko ime i lozinku prazni te omogućava gumb za prijavu.
+        ///Provjerava jesu li korisničko ime i lozinka prazni te omogućava gumb za prijavu.
         ///</summary>
         private void ProvjeraPraznogUnosa()
         {

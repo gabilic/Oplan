@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDodajPostrojbu));
             this.tkbIzdrzljivost = new System.Windows.Forms.TrackBar();
             this.btnOdustani = new System.Windows.Forms.Button();
             this.btnSpremi = new System.Windows.Forms.Button();
@@ -232,7 +231,7 @@
             // 
             this.vrstaBindingSource.DataSource = typeof(oplan.vrsta);
             // 
-            // frmPostrojba
+            // frmDodajPostrojbu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -248,9 +247,8 @@
             this.Controls.Add(this.btnSpremi);
             this.Controls.Add(this.btnOdustani);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "frmPostrojba";
+            this.Name = "frmDodajPostrojbu";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dodavanje postrojbe";

@@ -12,9 +12,16 @@ namespace oplan
 {
     public partial class frmKorisnici : Form
     {
-        public frmKorisnici()
+        private int prijavljeniKorisnik;
+
+        /// <summary>
+        /// Konstruktor kojem se proslijeđuje ID trenutnog korisnika.
+        /// </summary>
+        /// <param name="id">ID prijavljenog korisnika</param>
+        public frmKorisnici(int id)
         {
             InitializeComponent();
+            prijavljeniKorisnik = id;
         }
 
         private void frmKorisnici_Load(object sender, EventArgs e)
@@ -29,7 +36,7 @@ namespace oplan
 
         private void btnIzmijeniKorisnika_Click(object sender, EventArgs e)
         {
-            RadSKorisnicima.IzmijeniKorisnika(korisnikBindingSource);
+            RadSKorisnicima.IzmijeniKorisnika(korisnikBindingSource, prijavljeniKorisnik);
         }
 
         private void btnIzbrisiKorisnika_Click(object sender, EventArgs e)

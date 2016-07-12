@@ -33,16 +33,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmKorisnici));
             this.dgvKorisnici = new System.Windows.Forms.DataGridView();
-            this.btnDodajKorisnika = new System.Windows.Forms.Button();
-            this.btnIzmijeniKorisnika = new System.Windows.Forms.Button();
-            this.btnIzbrisiKorisnika = new System.Windows.Forms.Button();
-            this.btnIzvjestaj = new System.Windows.Forms.Button();
             this.idkorisnikDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.korisnickoimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lozinkaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.administratorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.promjenaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.korisnikBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnDodajKorisnika = new System.Windows.Forms.Button();
+            this.btnIzmijeniKorisnika = new System.Windows.Forms.Button();
+            this.btnIzbrisiKorisnika = new System.Windows.Forms.Button();
+            this.btnIzvjestaj = new System.Windows.Forms.Button();
+            this.pomoc = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKorisnici)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.korisnikBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -77,6 +78,51 @@
             this.dgvKorisnici.ReadOnly = true;
             this.dgvKorisnici.Size = new System.Drawing.Size(480, 352);
             this.dgvKorisnici.TabIndex = 0;
+            // 
+            // idkorisnikDataGridViewTextBoxColumn
+            // 
+            this.idkorisnikDataGridViewTextBoxColumn.DataPropertyName = "id_korisnik";
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.idkorisnikDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.idkorisnikDataGridViewTextBoxColumn.HeaderText = "ID korisnika";
+            this.idkorisnikDataGridViewTextBoxColumn.Name = "idkorisnikDataGridViewTextBoxColumn";
+            this.idkorisnikDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // korisnickoimeDataGridViewTextBoxColumn
+            // 
+            this.korisnickoimeDataGridViewTextBoxColumn.DataPropertyName = "korisnicko_ime";
+            this.korisnickoimeDataGridViewTextBoxColumn.HeaderText = "Korisničko ime";
+            this.korisnickoimeDataGridViewTextBoxColumn.Name = "korisnickoimeDataGridViewTextBoxColumn";
+            this.korisnickoimeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.korisnickoimeDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // lozinkaDataGridViewTextBoxColumn
+            // 
+            this.lozinkaDataGridViewTextBoxColumn.DataPropertyName = "lozinka";
+            this.lozinkaDataGridViewTextBoxColumn.HeaderText = "Lozinka";
+            this.lozinkaDataGridViewTextBoxColumn.Name = "lozinkaDataGridViewTextBoxColumn";
+            this.lozinkaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.lozinkaDataGridViewTextBoxColumn.Width = 105;
+            // 
+            // administratorDataGridViewTextBoxColumn
+            // 
+            this.administratorDataGridViewTextBoxColumn.DataPropertyName = "administrator";
+            this.administratorDataGridViewTextBoxColumn.HeaderText = "Administrator";
+            this.administratorDataGridViewTextBoxColumn.Name = "administratorDataGridViewTextBoxColumn";
+            this.administratorDataGridViewTextBoxColumn.ReadOnly = true;
+            this.administratorDataGridViewTextBoxColumn.Width = 95;
+            // 
+            // promjenaDataGridViewTextBoxColumn
+            // 
+            this.promjenaDataGridViewTextBoxColumn.DataPropertyName = "promjena";
+            this.promjenaDataGridViewTextBoxColumn.HeaderText = "promjena";
+            this.promjenaDataGridViewTextBoxColumn.Name = "promjenaDataGridViewTextBoxColumn";
+            this.promjenaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.promjenaDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // korisnikBindingSource
+            // 
+            this.korisnikBindingSource.DataSource = typeof(oplan.korisnik);
             // 
             // btnDodajKorisnika
             // 
@@ -126,50 +172,9 @@
             this.btnIzvjestaj.UseVisualStyleBackColor = true;
             this.btnIzvjestaj.Click += new System.EventHandler(this.btnIzvjestaj_Click);
             // 
-            // idkorisnikDataGridViewTextBoxColumn
+            // pomoc
             // 
-            this.idkorisnikDataGridViewTextBoxColumn.DataPropertyName = "id_korisnik";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.idkorisnikDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.idkorisnikDataGridViewTextBoxColumn.HeaderText = "ID korisnika";
-            this.idkorisnikDataGridViewTextBoxColumn.Name = "idkorisnikDataGridViewTextBoxColumn";
-            this.idkorisnikDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // korisnickoimeDataGridViewTextBoxColumn
-            // 
-            this.korisnickoimeDataGridViewTextBoxColumn.DataPropertyName = "korisnicko_ime";
-            this.korisnickoimeDataGridViewTextBoxColumn.HeaderText = "Korisničko ime";
-            this.korisnickoimeDataGridViewTextBoxColumn.Name = "korisnickoimeDataGridViewTextBoxColumn";
-            this.korisnickoimeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.korisnickoimeDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // lozinkaDataGridViewTextBoxColumn
-            // 
-            this.lozinkaDataGridViewTextBoxColumn.DataPropertyName = "lozinka";
-            this.lozinkaDataGridViewTextBoxColumn.HeaderText = "Lozinka";
-            this.lozinkaDataGridViewTextBoxColumn.Name = "lozinkaDataGridViewTextBoxColumn";
-            this.lozinkaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.lozinkaDataGridViewTextBoxColumn.Width = 105;
-            // 
-            // administratorDataGridViewTextBoxColumn
-            // 
-            this.administratorDataGridViewTextBoxColumn.DataPropertyName = "administrator";
-            this.administratorDataGridViewTextBoxColumn.HeaderText = "Administrator";
-            this.administratorDataGridViewTextBoxColumn.Name = "administratorDataGridViewTextBoxColumn";
-            this.administratorDataGridViewTextBoxColumn.ReadOnly = true;
-            this.administratorDataGridViewTextBoxColumn.Width = 95;
-            // 
-            // promjenaDataGridViewTextBoxColumn
-            // 
-            this.promjenaDataGridViewTextBoxColumn.DataPropertyName = "promjena";
-            this.promjenaDataGridViewTextBoxColumn.HeaderText = "promjena";
-            this.promjenaDataGridViewTextBoxColumn.Name = "promjenaDataGridViewTextBoxColumn";
-            this.promjenaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.promjenaDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // korisnikBindingSource
-            // 
-            this.korisnikBindingSource.DataSource = typeof(oplan.korisnik);
+            this.pomoc.HelpNamespace = "../../help/oplan.chm";
             // 
             // frmKorisnici
             // 
@@ -181,8 +186,12 @@
             this.Controls.Add(this.btnIzmijeniKorisnika);
             this.Controls.Add(this.btnDodajKorisnika);
             this.Controls.Add(this.dgvKorisnici);
+            this.pomoc.SetHelpKeyword(this, "F1");
+            this.pomoc.SetHelpNavigator(this, System.Windows.Forms.HelpNavigator.TableOfContents);
+            this.pomoc.SetHelpString(this, "F1");
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmKorisnici";
+            this.pomoc.SetShowHelp(this, true);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rad s korisnicima";
             this.Load += new System.EventHandler(this.frmKorisnici_Load);
@@ -205,5 +214,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lozinkaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn administratorDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn promjenaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.HelpProvider pomoc;
     }
 }

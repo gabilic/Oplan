@@ -15,6 +15,11 @@ namespace oplan
     {
         private int odabranaPostrojba;
 
+        /// <summary>
+        /// Konstruktor klase kojem se proslijeđuje ID postrojbe za odabrani popis opreme.
+        /// </summary>
+        /// <param name="id_postrojbe">ID postrojbe za koju se želi vidjeti oprema</param>
+        /// <param name="naziv">Naziv postrojbe u tekstualnom obliku</param>
         public frmNaoruzanje(int id_postrojbe, string naziv)
         {
             InitializeComponent();

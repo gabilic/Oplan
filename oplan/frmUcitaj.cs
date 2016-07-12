@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace oplan
 {
     public partial class frmUcitaj : Form
@@ -16,15 +15,17 @@ namespace oplan
         {
             InitializeComponent();
         }
-
+        int idOdPlana;
+        string nazivPlana;
         private void cmbNaziv_SelectedValueChanged(object sender, EventArgs e)
         {
             using (var db = new EntitiesSettings())
             {
                 var item = cmbNaziv.SelectedItem as plan;
-                int id = item.id_plan;
+                idOdPlana = item.id_plan;
+                nazivPlana = item.naziv;
                 var upit = (from v in db.vrsta
-                            where v.id_vrsta == id
+                            where v.id_vrsta == idOdPlana
                             select v.opis).FirstOrDefault();
                 txtDatum.Text = " " + item.datum.ToString("dd. MM. yyyy.");
             }
@@ -50,7 +51,26 @@ namespace oplan
 
         private void btnUcitaj_Click(object sender, EventArgs e)
         {
-            //taj se id onda proslijedi formi di bude plan
+            List<tocka> sveTocke = new List<tocka>();
+            List<tocka> filtriraneTocke = new List<tocka>();
+            using (var db = new EntitiesSettings())
+            {
+                sveTocke = db.tocka.ToList();
+                for (int i = 0; i < sveTocke.Count; i++)
+                {
+                    if (sveTocke[i].id_plan == idOdPlana)
+                    {
+                        filtriraneTocke.Add(sveTocke[i]);
+
+                    }
+
+                }
+            }
+            /*Form1 loadajPlan = new Form1(1, filtriraneTocke);
+
+            loadajPlan.Text = nazivPlana;
+            loadajPlan.WindowState = FormWindowState.Maximized;
+            loadajPlan.Show();*/
             this.Close();
         }
     }

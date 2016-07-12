@@ -11,7 +11,7 @@ namespace oplan
     static class Program
     {
         /// <summary>
-        /// The main entry point for the application.
+        /// Glavna ulazna točka za aplikaciju.
         /// </summary>
         [STAThread]
         static void Main()

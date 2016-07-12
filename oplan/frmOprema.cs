@@ -19,22 +19,22 @@ namespace oplan
 
         private void frmOprema_Load(object sender, EventArgs e)
         {
-            PoslovnaLogika.PrikaziOpremu(dgvOprema);
+            RadSOpremom.PrikaziOpremu(dgvOprema);
         }
 
         private void btnDodajOpremu_Click(object sender, EventArgs e)
         {
-            PoslovnaLogika.DodajOpremu(dgvOprema);
+            RadSOpremom.DodajOpremu(dgvOprema);
         }
 
-        private void btnIzmijeniOpremu_Click(object sender, EventArgs e)
+        private void btnIzmjeniOpremu_Click(object sender, EventArgs e)
         {
-            PoslovnaLogika.IzmijeniOpremu(dgvOprema, dgvOprema.CurrentRow);
+            RadSOpremom.IzmijeniOpremu(dgvOprema, dgvOprema.CurrentRow);
         }
 
         private void btnIzbrisiOpremu_Click(object sender, EventArgs e)
         {
-            PoslovnaLogika.IzbrisiOpremu(dgvOprema, dgvOprema.CurrentRow);
+            RadSOpremom.IzbrisiOpremu(dgvOprema, dgvOprema.CurrentRow);
         }
     }
 }

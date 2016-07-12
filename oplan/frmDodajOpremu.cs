@@ -19,6 +19,10 @@ namespace oplan
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Konstruktor klase koji se poziva kada se oprema mijenja.
+        /// </summary>
+        /// <param name="redak">Redak koji se mijenja.</param>
         public frmDodajOpremu(DataGridViewRow redak)
         {
             InitializeComponent();
@@ -26,8 +30,25 @@ namespace oplan
             this.Text = "Izmjena opreme";
         }
 
+        /// <summary>
+        /// Učitava podatke iz baze o tipu i zemlji porijekla u padajuće izbornike.
+        /// </summary>
+        public void UcitajPodatke()
+        {
+            using (var db = new EntitiesSettings())
+            {
+                cmbTipOpreme.DataSource = db.tip_opreme.ToList();
+                cmbTipOpreme.ValueMember = "id_tip_oprema";
+                cmbTipOpreme.DisplayMember = "naziv";
+                cmbZemlja.DataSource = db.zemlja.ToList();
+                cmbZemlja.ValueMember = "id_zemlja";
+                cmbZemlja.DisplayMember = "naziv";
+            }
+        }
+
         private void frmDodajOpremu_Load(object sender, EventArgs e)
         {
+            btnSpremi.Enabled = false;
             UcitajPodatke();
             if (redakZaIzmjenu != null)
             {
@@ -61,26 +82,19 @@ namespace oplan
             }
         }
 
-
-        /// <summary>
-        /// Učitava podatke iz baze u padajuće izbornike.
-        /// </summary>
-        public void UcitajPodatke()
+        ///<summary>
+        ///Provjerava jesu li model i opis prazni te omogućava gumb za spremanje.
+        ///</summary>
+        private void ProvjeraPraznogUnosa()
         {
-            using (var db = new EntitiesSettings())
+            if (string.IsNullOrEmpty(txtModel.Text) || string.IsNullOrEmpty(txtOpis.Text))
             {
-                cmbTipOpreme.DataSource = db.tip_opreme.ToList();
-                cmbTipOpreme.ValueMember = "id_tip_oprema";
-                cmbTipOpreme.DisplayMember = "naziv";
-                cmbZemlja.DataSource = db.zemlja.ToList();
-                cmbZemlja.ValueMember = "id_zemlja";
-                cmbZemlja.DisplayMember = "naziv";
+                btnSpremi.Enabled = false;
             }
-        }
-
-        private void btnOdustani_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            else
+            {
+                btnSpremi.Enabled = true;
+            }
         }
 
         private void btnSpremi_Click(object sender, EventArgs e)
@@ -91,7 +105,7 @@ namespace oplan
             int idZemlja = itemZemlja.id_zemlja;
             string model = txtModel.Text;
 
-            if (PoslovnaLogika.ProvjeriOpremu(idTipOpreme, idZemlja, model, redakZaIzmjenu))
+            if (RadSOpremom.ProvjeriOpremu(idTipOpreme, idZemlja, model, redakZaIzmjenu))
             {
                 if (redakZaIzmjenu == null)
                 {
@@ -135,6 +149,21 @@ namespace oplan
             {
                 MessageBox.Show("Takva oprema već postoji u bazi podataka!", "Pogreška", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnOdustani_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtModel_TextChanged(object sender, EventArgs e)
+        {
+            ProvjeraPraznogUnosa();
+        }
+
+        private void txtOpis_TextChanged(object sender, EventArgs e)
+        {
+            ProvjeraPraznogUnosa();
         }
     }
 }

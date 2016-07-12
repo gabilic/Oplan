@@ -72,6 +72,7 @@
             this.Controls.Add(this.btnUcitaj);
             this.Controls.Add(this.txtDatum);
             this.Controls.Add(this.cmbNaziv);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmUcitaj";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
